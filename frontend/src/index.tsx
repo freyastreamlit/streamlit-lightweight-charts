@@ -1,12 +1,12 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import { StreamlitProvider } from "streamlit-component-lib-react-hooks"
-import StreamlitLightweightCharts from "./StreamlitLightweightCharts"
+import LightweightCharts from "./LightweightCharts"
 
 ReactDOM.render(
   <React.StrictMode>
     <StreamlitProvider>
-      <StreamlitLightweightCharts />
+      <LightweightCharts />
     </StreamlitProvider>
   </React.StrictMode>,
   document.getElementById("root")
