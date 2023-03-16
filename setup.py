@@ -2,11 +2,11 @@ import setuptools
 
 setuptools.setup(
     name="streamlit-lightweight-charts",
-    version="0.0.1",
-    author="",
-    author_email="",
-    description="",
-    long_description="",
+    version="0.7.0",
+    author="Joe Rosa",
+    author_email="joe.rosa@itpmngt.co.uk",
+    description="streamlit-lightweight-charts",
+    long_description="Wrapper for TradingView lightweight-charts",
     long_description_content_type="text/plain",
     url="",
     packages=setuptools.find_packages(),

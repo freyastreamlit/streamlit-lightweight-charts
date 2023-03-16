@@ -3,7 +3,7 @@ import streamlit.components.v1 as components
 from enum import Enum
 
 _COMPONENT_NAME = "streamlit-lightweight-charts"
-_RELEASE = False
+_RELEASE = True
 
 class Chart(str, Enum):
     area = 'addAreaSeries'
@@ -21,7 +21,10 @@ if not _RELEASE:
 else:
     parent_dir = os.path.dirname(os.path.abspath(__file__))
     build_dir = os.path.join(parent_dir, "frontend","build")
-    _component_func = components.declare_component(_COMPONENT_NAME, path=build_dir)
+    _component_func = components.declare_component(
+        _COMPONENT_NAME,
+        path=build_dir
+    )
 
 
 # Create a wrapper function for the component. This is an optional
