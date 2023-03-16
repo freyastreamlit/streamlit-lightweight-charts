@@ -32,22 +32,22 @@ const LightweightCharts: React.VFC = () => {
           let newSeries
           switch(seriesObject.type) {
             case 'Area':
-              newSeries = chart.addAreaSeries({...seriesObject.seriesOptions })
+              newSeries = chart.addAreaSeries(seriesObject.seriesOptions)
               break
             case 'Bar':
-              newSeries = chart.addBarSeries({...seriesObject.seriesOptions })
+              newSeries = chart.addBarSeries(seriesObject.seriesOptions )
               break
             case 'Baseline':
-              newSeries = chart.addBaselineSeries({...seriesObject.seriesOptions })
+              newSeries = chart.addBaselineSeries(seriesObject.options)
               break
             case 'Candlestick':
-              newSeries = chart.addCandlestickSeries({...seriesObject.seriesOptions })
+              newSeries = chart.addCandlestickSeries(seriesObject.seriesOptions)
               break
             case 'Histogram':
-              newSeries = chart.addHistogramSeries({...seriesObject.seriesOptions })
+              newSeries = chart.addHistogramSeries(seriesObject.seriesOptions)
               break
             case 'Line':
-              newSeries = chart.addLineSeries({...seriesObject.seriesOptions })
+              newSeries = chart.addLineSeries(seriesObject.seriesOptions)
               break
             default:
                 return

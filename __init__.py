@@ -74,8 +74,10 @@ if not _RELEASE:
 
     chartOptions = {
         "layout": {
+            "textColor": 'black',
             "background": {
-                "color": "white"
+                "type": 'solid',
+                "color": 'white'
             }
         }
     }
@@ -118,7 +120,7 @@ if not _RELEASE:
             { "value": 46, "time": 1643202922 }
         ],
         "options": {
-            "baseValue": { "type": 'price', "price": 25 },
+            "baseValue": { "type": "price", "price": 25 },
             "topLineColor": 'rgba( 38, 166, 154, 1)',
             "topFillColor1": 'rgba( 38, 166, 154, 0.28)',
             "topFillColor2": 'rgba( 38, 166, 154, 0.05)',
