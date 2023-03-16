@@ -63,7 +63,7 @@ streamlit_lightweight_charts(chartOptions={}, series=[], key=None)
     streamlit_lightweight_charts( chartOptions, seriesLineChart, 'line')
 ```
 ---
-<br /><br /><br />
+<br />
 
 ![Area Chart sample](./.streamlit/AreaChart.png)
 
@@ -97,7 +97,7 @@ streamlit_lightweight_charts(chartOptions={}, series=[], key=None)
     streamlit_lightweight_charts( chartOptions, seriesAreaChart, 'area')
 ```
 ---
-<br /><br /><br />
+<br />
 
 ![Histogram Chart sample](./.streamlit/HistogramChart.png)
 
@@ -131,7 +131,7 @@ streamlit_lightweight_charts(chartOptions={}, series=[], key=None)
     streamlit_lightweight_charts( chartOptions, seriesHistogramChart, 'histogram')
 ```
 ---
-<br /><br /><br />
+<br />
 
 ![Bar Chart sample](./.streamlit/BarChart.png)
 
@@ -168,7 +168,7 @@ streamlit_lightweight_charts(chartOptions={}, series=[], key=None)
     streamlit_lightweight_charts( chartOptions, seriesBarChart, 'bar')
 ```
 ---
-<br /><br /><br />
+<br />
 
 ![Candlestick Chart sample](./.streamlit/CandlestickChart.png)
 
