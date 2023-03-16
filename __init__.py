@@ -2,7 +2,7 @@ import os
 import streamlit.components.v1 as components
 from enum import Enum
 
-_COMPONENT_NAME = "streamlit-lightweight-charts"
+_COMPONENT_NAME = "streamlit_lightweight_charts"
 _RELEASE = True
 
 class Chart(str, Enum):
