@@ -1,23 +1,17 @@
 import { useRenderData } from "streamlit-component-lib-react-hooks"
 import { createChart } from "lightweight-charts"
 import React, { useRef, useEffect } from "react"
-// import { ChartOptions, SeriesOptions } from "./Types"
 
 const LightweightCharts: React.VFC = () => {
 
   // returns the renderData passed from Python
   // { args: object, disabled: boolean, theme: object }
-  const renderData = useRenderData() 
-  console.log('renderData',renderData)
-  
-  const type = renderData.args["chart"]
+  const renderData = useRenderData()  
   const chartOptions = renderData.args["chartOptions"]
   const series = renderData.args["series"]
-  const seriesOptions = renderData.args["cseriesOptions"]
 
-  const chartContainerRef = useRef<HTMLDivElement>(null);
+  const chartContainerRef = useRef<HTMLDivElement>(null)
   
-  console.log('chart',type)
   useEffect(
 		() => {
       if(chartContainerRef.current){
@@ -33,46 +27,48 @@ const LightweightCharts: React.VFC = () => {
 
         chart.timeScale().fitContent();
 
-        let newSeries
-        switch(type) {
-          case 'addAreaSeries':
-            newSeries = chart.addAreaSeries({...seriesOptions })
-            break
-          case 'addBarSeries':
-            newSeries = chart.addBarSeries({...seriesOptions })
-            break
-          case 'addBaselineSeries':
-            newSeries = chart.addBaselineSeries({...seriesOptions })
-            break
-          case 'addCandlestickSeries':
-            newSeries = chart.addCandlestickSeries({...seriesOptions })
-            break
-          case 'addHistogramSeries':
-            newSeries = chart.addHistogramSeries({...seriesOptions })
-            break
-          default:
-            newSeries = chart.addLineSeries({...seriesOptions })
+        for (const seriesObject of series){
+          
+          let newSeries
+          switch(seriesObject.type) {
+            case 'Area':
+              newSeries = chart.addAreaSeries({...seriesObject.seriesOptions })
+              break
+            case 'Bar':
+              newSeries = chart.addBarSeries({...seriesObject.seriesOptions })
+              break
+            case 'Baseline':
+              newSeries = chart.addBaselineSeries({...seriesObject.seriesOptions })
+              break
+            case 'Candlestick':
+              newSeries = chart.addCandlestickSeries({...seriesObject.seriesOptions })
+              break
+            case 'Histogram':
+              newSeries = chart.addHistogramSeries({...seriesObject.seriesOptions })
+              break
+            case 'Line':
+              newSeries = chart.addLineSeries({...seriesObject.seriesOptions })
+              break
+            default:
+                return
+          }
+
+          newSeries.setData(seriesObject.data)
         }
 
-        // const newSeries = chart[series]({...seriesOptions })
-        newSeries.setData(series)
-
         window.addEventListener('resize', handleResize)
-
         return () => { // required because how useEffect() works 
           window.removeEventListener('resize', handleResize)
           chart.remove()
-        };
+        }
       }
 		},
-		[type, chartOptions, series, seriesOptions]
-	);
+		[series, chartOptions]
+	)
 
 	return (
-		<div
-			ref={chartContainerRef}
-		/>
-	);
+		<div ref={chartContainerRef} />
+	)
 }
 
 export default LightweightCharts
