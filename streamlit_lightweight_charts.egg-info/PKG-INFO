@@ -1,0 +1,12 @@
+Metadata-Version: 2.1
+Name: streamlit-lightweight-charts
+Version: 0.7.0
+Summary: streamlit-lightweight-charts
+Home-page: UNKNOWN
+Author: Joe Rosa
+Author-email: joe.rosa@itpmngt.co.uk
+License: UNKNOWN
+Description: Wrapper for TradingView lightweight-charts
+Platform: UNKNOWN
+Requires-Python: >=3.6
+Description-Content-Type: text/plain

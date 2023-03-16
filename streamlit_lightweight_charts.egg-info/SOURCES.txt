@@ -1,0 +1,8 @@
+MANIFEST.in
+README.md
+setup.py
+streamlit_lightweight_charts.egg-info/PKG-INFO
+streamlit_lightweight_charts.egg-info/SOURCES.txt
+streamlit_lightweight_charts.egg-info/dependency_links.txt
+streamlit_lightweight_charts.egg-info/requires.txt
+streamlit_lightweight_charts.egg-info/top_level.txt
