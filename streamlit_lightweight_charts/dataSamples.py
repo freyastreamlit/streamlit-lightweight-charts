@@ -12,7 +12,6 @@ seriesSingleValueData = [
     { "time": '2018-12-31', "value": 22.67 },
 ];
 
-
 seriesBaselineChart = [
     { "value": 1, "time": 1642425322 },
     { "value": 8, "time": 1642511722 },
@@ -321,4 +320,3 @@ priceVolumeSeriesHistogram = [
     { "time": '2019-05-24', "value": 8755506.00, "color": 'rgba(0, 150, 136, 0.8)' },
     { "time": '2019-05-28', "value": 3097125.00, "color": 'rgba(0, 150, 136, 0.8)' }
 ]
-

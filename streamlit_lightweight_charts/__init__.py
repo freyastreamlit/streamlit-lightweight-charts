@@ -3,9 +3,8 @@ from typing import Dict
 from typing import List
 from enum import Enum
 import streamlit.components.v1 as components
-import examples.dataSamples as data
 
-_COMPONENT_NAME = "renderLightweightChart"
+_COMPONENT_NAME = "streamlit_lightweight_charts"
 _RELEASE = True
 
 class Chart(str, Enum):
@@ -28,7 +27,6 @@ else:
         _COMPONENT_NAME,
         path=build_dir
     )
-
 
 # Create a wrapper function for the component. This is an optional
 # best practice - we could simply expose the component function returned by
@@ -76,9 +74,9 @@ def renderLightweightChart(chartOptions: Dict, series: List, key: str = None):
     return component_value
 
 
-# app: `$ streamlit run renderLightweightChart/__init__.py`
 if not _RELEASE:
     import streamlit as st
+    import dataSamples as data
 
     chartOptions = {
         "layout": {

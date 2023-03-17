@@ -34,7 +34,7 @@ streamlit_lightweight_charts(chartOptions={}, series=[], key=None)
 
 # Overlaid Charts
 
-![Price Volume Chart sample](https://github.com/freyastreamlit/streamlit-lightweight-charts/blob/main/examples/PriceVolumeChart.png?raw=true)
+![Price with Volume Chart](https://github.com/freyastreamlit/streamlit-lightweight-charts/blob/main/examples/PriceVolumeChart.png?raw=true)
 
 ```python
 import streamlit as st
@@ -108,7 +108,7 @@ renderLightweightChart(priceVolumeChartOptions, priceVolumeSeries)
 ---
 <br />
 
-![Overlaid Areas Chart sample](https://github.com/freyastreamlit/streamlit-lightweight-charts/blob/main/examples/OverlaidAreasChart.png?raw=true)
+![Overlaid Areas Chart](https://github.com/freyastreamlit/streamlit-lightweight-charts/blob/main/examples/OverlaidAreasChart.png?raw=true)
 
 ```python
 import streamlit as st
@@ -177,7 +177,7 @@ renderLightweightChart(overlaidAreaSeriesOptions, seriesMultipleChart, 'multiple
 
 # Basic charts
 
-![Line Chart sample](https://github.com/freyastreamlit/streamlit-lightweight-charts/blob/main/examples/LineChart.png?raw=true)
+![Line Chart](https://github.com/freyastreamlit/streamlit-lightweight-charts/blob/main/examples/LineChart.png?raw=true)
 
 ```python
 import streamlit as st
@@ -216,7 +216,7 @@ renderLightweightChart( chartOptions, seriesLineChart, 'line')
 ---
 <br />
 
-![Area Chart sample](https://github.com/freyastreamlit/streamlit-lightweight-charts/blob/main/examples/AreaChart.png?raw=true)
+![Area Chart](https://github.com/freyastreamlit/streamlit-lightweight-charts/blob/main/examples/AreaChart.png?raw=true)
 
 ```python
 import streamlit as st
@@ -255,7 +255,7 @@ renderLightweightChart( chartOptions, seriesAreaChart, 'area')
 ---
 <br />
 
-![Histogram Chart sample](https://github.com/freyastreamlit/streamlit-lightweight-charts/blob/main/examples/HistogramChart.png?raw=true)
+![Histogram Chart](https://github.com/freyastreamlit/streamlit-lightweight-charts/blob/main/examples/HistogramChart.png?raw=true)
 
 ```python
 import streamlit as st
@@ -294,7 +294,7 @@ renderLightweightChart( chartOptions, seriesHistogramChart, 'histogram')
 ---
 <br />
 
-![Bar Chart sample](https://github.com/freyastreamlit/streamlit-lightweight-charts/blob/main/examples/BarChart.png?raw=true)
+![Bar Chart](https://github.com/freyastreamlit/streamlit-lightweight-charts/blob/main/examples/BarChart.png?raw=true)
 
 ```python
 import streamlit as st
@@ -336,7 +336,7 @@ renderLightweightChart( chartOptions, seriesBarChart, 'bar')
 ---
 <br />
 
-![Candlestick Chart sample](https://github.com/freyastreamlit/streamlit-lightweight-charts/blob/main/examples/CandlestickChart.png?raw=true)
+![Candlestick Chart](https://github.com/freyastreamlit/streamlit-lightweight-charts/blob/main/examples/CandlestickChart.png?raw=true)
 
 ```python
 import streamlit as st
@@ -381,7 +381,7 @@ renderLightweightChart( chartOptions, seriesCandlestickChart, 'candlestick')
 ---
 <br />
 
-![Baseline Chart sample](https://github.com/freyastreamlit/streamlit-lightweight-charts/blob/main/examples/BaselineChart.png?raw=true)
+![Baseline Chart](https://github.com/freyastreamlit/streamlit-lightweight-charts/blob/main/examples/BaselineChart.png?raw=true)
 
 ```python
 import streamlit as st
