@@ -53,5 +53,5 @@ __pypackages__/
 ## React and Javascript
 
 .DS_STORE
-frontend/node_modules
+streamlit_lightweight_charts/frontend/node_modules
 .vscode
