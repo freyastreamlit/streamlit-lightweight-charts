@@ -5,8 +5,8 @@ from enum import Enum
 import streamlit.components.v1 as components
 import examples.dataSamples as data
 
-_COMPONENT_NAME = "renderChart"
-_RELEASE = False
+_COMPONENT_NAME = "renderLightweightChart"
+_RELEASE = True
 
 class Chart(str, Enum):
     area = 'addAreaSeries'
@@ -35,19 +35,19 @@ else:
 # `declare_component` and call it done. The wrapper allows us to customize
 # our component's API: we can pre-process its input args, post-process its
 # output value, and add a docstring for users.
-def renderChart(chartOptions: Dict, series: List, key: str = None):
-    """Create a new instance of "renderChart".
+def renderLightweightChart(chartOptions: Dict, series: List, key: str = None):
+    """Create a new instance of "renderLightweightChart".
 
     Parameters
     ----------
 
-    chartOptions: <object>
+    chartOptions: <Dict>
         https://tradingview.github.io/lightweight-charts/docs/api/interfaces/ChartOptions
 
-    series: <array of objects>
+    series: <List of Dicts>
         https://tradingview.github.io/lightweight-charts/docs/series-types
 
-        type: <string-enum>
+        type: <str-enum>
             Area
             Bar
             Baseline
@@ -55,11 +55,13 @@ def renderChart(chartOptions: Dict, series: List, key: str = None):
             Histogram
             Line
 
-        data: <array of objects> accordingly to series type
+        data: <List of Dicts> accordingly to series type
 
-        options: <object> with style options
+        options: <Dict> with style options
 
-    key: string or None
+        priceScale: <Dict> optional
+
+    key: str or None
         An optional key that uniquely identifies this component. If this is
         None, and the component's arguments are changed, the component will
         be re-mounted in the Streamlit frontend and lose its current state.
@@ -74,7 +76,7 @@ def renderChart(chartOptions: Dict, series: List, key: str = None):
     return component_value
 
 
-# app: `$ streamlit run renderChart/__init__.py`
+# app: `$ streamlit run renderLightweightChart/__init__.py`
 if not _RELEASE:
     import streamlit as st
 
@@ -94,7 +96,7 @@ if not _RELEASE:
         "options": {}
     }]
     st.subheader("Area Chart sample")
-    renderChart( chartOptions, seriesAreaChart, 'area')
+    renderLightweightChart( chartOptions, seriesAreaChart, 'area')
     st.markdown("---")
 
     seriesBaselineChart = [{
@@ -111,7 +113,7 @@ if not _RELEASE:
         }
     }]
     st.subheader("Baseline Chart sample")
-    renderChart( chartOptions, seriesBaselineChart, 'baseline')
+    renderLightweightChart( chartOptions, seriesBaselineChart, 'baseline')
     st.markdown("---")
 
     seriesLineChart = [{
@@ -120,7 +122,7 @@ if not _RELEASE:
         "options": {}
     }]
     st.subheader("Line Chart sample")
-    renderChart(chartOptions, seriesLineChart, 'line')
+    renderLightweightChart(chartOptions, seriesLineChart, 'line')
     st.markdown("---")
 
     seriesHistogramChart = [{
@@ -129,7 +131,7 @@ if not _RELEASE:
         "options": { "color": '#26a69a' }
     }]
     st.subheader("Histogram Chart sample")
-    renderChart(chartOptions, seriesHistogramChart, 'histogram')
+    renderLightweightChart(chartOptions, seriesHistogramChart, 'histogram')
     st.markdown("---")
 
     seriesBarChart = [{
@@ -141,7 +143,7 @@ if not _RELEASE:
         }
     }]
     st.subheader("Bar Chart sample")
-    renderChart(chartOptions, seriesBarChart, 'bar')
+    renderLightweightChart(chartOptions, seriesBarChart, 'bar')
     st.markdown("---")
 
     seriesCandlestickChart = [{
@@ -156,7 +158,7 @@ if not _RELEASE:
         }
     }]
     st.subheader("Candlestick Chart sample")
-    renderChart(chartOptions, seriesCandlestickChart, 'candlestick')
+    renderLightweightChart(chartOptions, seriesCandlestickChart, 'candlestick')
     st.markdown("---")
 
     overlaidAreaSeriesOptions = {
@@ -215,7 +217,7 @@ if not _RELEASE:
         }
     ]
     st.subheader("Overlaid Series Chart sample")
-    renderChart(overlaidAreaSeriesOptions, seriesMultipleChart, 'multiple')
+    renderLightweightChart(overlaidAreaSeriesOptions, seriesMultipleChart, 'multiple')
 
     st.markdown("---")
 
@@ -282,5 +284,5 @@ if not _RELEASE:
         }
     ]
     st.subheader("Price and Volume Series Chart sample")
-    renderChart(priceVolumeChartOptions, priceVolumeSeries)
+    renderLightweightChart(priceVolumeChartOptions, priceVolumeSeries)
 

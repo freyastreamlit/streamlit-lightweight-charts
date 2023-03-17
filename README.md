@@ -14,18 +14,19 @@ And correspondent data series
 ```
 streamlit_lightweight_charts(chartOptions={}, series=[], key=None)
 ```
-- [chartOptions](https://tradingview.github.io/lightweight-charts/docs/api/interfaces/ChartOptions): `<object>`
-- [series](https://tradingview.github.io/lightweight-charts/docs/series-types): `<array of objects>`
-    - type: `<string-enum>`
+- [chartOptions](https://tradingview.github.io/lightweight-charts/docs/api/interfaces/ChartOptions): `<Dict>`
+- [series](https://tradingview.github.io/lightweight-charts/docs/series-types): `<List of Dicts>`
+    - type: `<str-enum>`
         - Area
         - Bar
         - Baseline
         - Candlestick
         - Histogram
         - Line
-    - data: `<array of objects>` accordingly to series type
-    - options: `<object>` with style options
-- key: `<string>` optional if creating multiple charts
+    - data: `<List of Dicts>` accordingly to series type
+    - options: `<Dict>` with style options
+    - priceScale: `<Dict>` optional
+- key: `<str>` when creating multiple charts on some page
 <br/><br/>
 
 # e.g.:
@@ -37,7 +38,7 @@ streamlit_lightweight_charts(chartOptions={}, series=[], key=None)
 
 ```python
 import streamlit as st
-from streamlit_lightweight_charts import renderChart
+from streamlit_lightweight_charts import renderLightweightChart
 import dataSamples as data
 
 priceVolumeChartOptions = {
@@ -102,7 +103,7 @@ priceVolumeSeries = [
     }
 ]
 st.subheader("Price and Volume Series Chart sample")
-renderChart(priceVolumeChartOptions, priceVolumeSeries)
+renderLightweightChart(priceVolumeChartOptions, priceVolumeSeries)
 ```
 ---
 <br />
@@ -111,7 +112,7 @@ renderChart(priceVolumeChartOptions, priceVolumeSeries)
 
 ```python
 import streamlit as st
-from streamlit_lightweight_charts import renderChart
+from streamlit_lightweight_charts import renderLightweightChart
 import dataSamples as data
 
 overlaidAreaSeriesOptions = {
@@ -169,7 +170,7 @@ seriesMultipleChart = [
     }
 ]
 st.subheader("Overlaid Series Chart sample")
-renderChart(overlaidAreaSeriesOptions, seriesMultipleChart, 'multiple')
+renderLightweightChart(overlaidAreaSeriesOptions, seriesMultipleChart, 'multiple')
 ```
 ---
 <br />
@@ -180,7 +181,7 @@ renderChart(overlaidAreaSeriesOptions, seriesMultipleChart, 'multiple')
 
 ```python
 import streamlit as st
-from streamlit_lightweight_charts import renderChart
+from streamlit_lightweight_charts import renderLightweightChart
 
 chartOptions = {
     "layout": {
@@ -210,7 +211,7 @@ seriesLineChart = [{
 }]
 
 st.subheader("Line Chart sample")
-renderChart( chartOptions, seriesLineChart, 'line')
+renderLightweightChart( chartOptions, seriesLineChart, 'line')
 ```
 ---
 <br />
@@ -219,7 +220,7 @@ renderChart( chartOptions, seriesLineChart, 'line')
 
 ```python
 import streamlit as st
-from streamlit_lightweight_charts import renderChart
+from streamlit_lightweight_charts import renderLightweightChart
 
 chartOptions = {
     "layout": {
@@ -249,7 +250,7 @@ seriesAreaChart = [{
 }]
 
 st.subheader("Area Chart sample")
-renderChart( chartOptions, seriesAreaChart, 'area')
+renderLightweightChart( chartOptions, seriesAreaChart, 'area')
 ```
 ---
 <br />
@@ -258,7 +259,7 @@ renderChart( chartOptions, seriesAreaChart, 'area')
 
 ```python
 import streamlit as st
-from streamlit_lightweight_charts import renderChart
+from streamlit_lightweight_charts import renderLightweightChart
 
 chartOptions = {
     "layout": {
@@ -288,7 +289,7 @@ seriesHistogramChart = [{
 }]
 
 st.subheader("Histogram Chart sample")
-renderChart( chartOptions, seriesHistogramChart, 'histogram')
+renderLightweightChart( chartOptions, seriesHistogramChart, 'histogram')
 ```
 ---
 <br />
@@ -297,7 +298,7 @@ renderChart( chartOptions, seriesHistogramChart, 'histogram')
 
 ```python
 import streamlit as st
-from streamlit_lightweight_charts import renderChart
+from streamlit_lightweight_charts import renderLightweightChart
 
 chartOptions = {
     "layout": {
@@ -330,7 +331,7 @@ seriesBarChart = [{
 }]
 
 st.subheader("Bar Chart sample")
-renderChart( chartOptions, seriesBarChart, 'bar')
+renderLightweightChart( chartOptions, seriesBarChart, 'bar')
 ```
 ---
 <br />
@@ -339,7 +340,7 @@ renderChart( chartOptions, seriesBarChart, 'bar')
 
 ```python
 import streamlit as st
-from streamlit_lightweight_charts import renderChart
+from streamlit_lightweight_charts import renderLightweightChart
 
 chartOptions = {
     "layout": {
@@ -375,7 +376,7 @@ seriesCandlestickChart = [{
 }]
 
 st.subheader("Candlestick Chart sample")
-renderChart( chartOptions, seriesCandlestickChart, 'candlestick')
+renderLightweightChart( chartOptions, seriesCandlestickChart, 'candlestick')
 ```
 ---
 <br />
@@ -384,7 +385,7 @@ renderChart( chartOptions, seriesCandlestickChart, 'candlestick')
 
 ```python
 import streamlit as st
-from streamlit_lightweight_charts import renderChart
+from streamlit_lightweight_charts import renderLightweightChart
 
 chartOptions = {
     "layout": {
@@ -422,5 +423,5 @@ seriesBaselineChart = [{
 }]
 
 st.subheader("Baseline Chart sample")
-renderChart( chartOptions, seriesBaselineChart, 'baseline')
+renderLightweightChart( chartOptions, seriesBaselineChart, 'baseline')
 ```

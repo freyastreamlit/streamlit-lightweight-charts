@@ -1,5 +1,5 @@
 import streamlit as st
-from streamlit_lightweight_charts import renderChart
+from streamlit_lightweight_charts import renderLightweightChart
 import dataSamples as data
 
 overlaidAreaSeriesOptions = {
@@ -57,4 +57,4 @@ seriesMultipleChart = [
     }
 ]
 st.subheader("Overlaid Series Chart sample")
-renderChart(overlaidAreaSeriesOptions, seriesMultipleChart, 'multiple')
+renderLightweightChart(overlaidAreaSeriesOptions, seriesMultipleChart, 'multiple')
