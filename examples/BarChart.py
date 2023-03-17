@@ -1,5 +1,5 @@
 import streamlit as st
-from streamlit_lightweight_charts import renderChart
+from streamlit_lightweight_charts import renderLightweightChart
 
 chartOptions = {
     "layout": {
@@ -32,4 +32,4 @@ seriesBarChart = [{
 }]
 
 st.subheader("Bar Chart sample")
-renderChart( chartOptions, seriesBarChart, 'bar')
+renderLightweightChart( chartOptions, seriesBarChart, 'bar')
