@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="streamlit-lightweight-charts",
-    version="0.7.2",
+    version="0.7.4",
     author="Joe Rosa",
     author_email="joe.rosa@itpmngt.co.uk",
     license="MIT",
@@ -14,7 +14,7 @@ setuptools.setup(
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.6",
     ],
-    description="streamlit-lightweight-charts",
+    description="Wrapper for TradingView lightweight-charts",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/freyastreamlit/streamlit-lightweight-charts",

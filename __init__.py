@@ -6,7 +6,7 @@ import streamlit.components.v1 as components
 import examples.dataSamples as data
 
 _COMPONENT_NAME = "renderLightweightChart"
-_RELEASE = False
+_RELEASE = True
 
 class Chart(str, Enum):
     area = 'addAreaSeries'
