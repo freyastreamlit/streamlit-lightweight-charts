@@ -1,5 +1,5 @@
 import streamlit as st
-import streamlit_lightweight_charts
+from streamlit_lightweight_charts import renderChart
 
 chartOptions = {
     "layout": {
@@ -29,4 +29,4 @@ seriesHistogramChart = [{
 }]
 
 st.subheader("Histogram Chart sample")
-streamlit_lightweight_charts( chartOptions, seriesHistogramChart, 'histogram')
+renderChart( chartOptions, seriesHistogramChart, 'histogram')

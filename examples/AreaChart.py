@@ -1,5 +1,5 @@
 import streamlit as st
-import streamlit_lightweight_charts
+from streamlit_lightweight_charts import renderChart
 
 chartOptions = {
     "layout": {
@@ -29,4 +29,4 @@ seriesAreaChart = [{
 }]
 
 st.subheader("Area Chart sample")
-streamlit_lightweight_charts( chartOptions, seriesAreaChart, 'area')
+renderChart( chartOptions, seriesAreaChart, 'area')
