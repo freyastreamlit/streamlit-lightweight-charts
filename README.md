@@ -5,14 +5,9 @@ Streamlit wrapper for Tradingview's Financial: `lightweight-charts`
 - [Documentation](https://tradingview.github.io/lightweight-charts/)
 - [GitHub](https://github.com/tradingview/lightweight-charts)
 
-## Types of charts
-And correspondent data series
-
-
-
 ## How to use:
 ```
-streamlit_lightweight_charts(chartOptions={}, series=[], key=None)
+renderLightweightChart(chartOptions:Dict, series:List)
 ```
 - [chartOptions](https://tradingview.github.io/lightweight-charts/docs/api/interfaces/ChartOptions): `<Dict>`
 - [series](https://tradingview.github.io/lightweight-charts/docs/series-types): `<List of Dicts>`
