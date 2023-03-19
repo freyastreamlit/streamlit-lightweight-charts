@@ -1,77 +1,118 @@
 import { useRenderData } from "streamlit-component-lib-react-hooks"
-import { createChart } from "lightweight-charts"
+import {
+  createChart,
+  IChartApi,
+} from "lightweight-charts"
 import React, { useRef, useEffect } from "react"
 
-const LightweightCharts: React.VFC = () => {
+const LightweightChartsMultiplePanes: React.VFC = () => {
 
   // returns the renderData passed from Python
   // { args: object, disabled: boolean, theme: object }
-  const renderData = useRenderData()  
-  const chartOptions = renderData.args["chartOptions"]
-  const series = renderData.args["series"]
+  const renderData = useRenderData()
+  const chartsData = renderData.args["charts"]
 
-  const chartContainerRef = useRef<HTMLDivElement>(null)
-  
-  useEffect(
-		() => {
-      if(chartContainerRef.current){
-        const handleResize = () => {
-          chart.applyOptions({ width: chartContainerRef?.current?.clientWidth })
-        }
+  const chartsContainerRef = useRef<HTMLDivElement>(null)
+  const chartElRefs = Array(chartsData.length).fill(useRef<HTMLDivElement>(null))
+  const chartRefs = useRef<IChartApi[]>([])
 
-        const chart = createChart(chartContainerRef?.current, {
-          height: 300,
-          ...chartOptions,
-          width: chartContainerRef?.current?.clientWidth
-        })
+    useEffect(() => {
+      if (chartElRefs.find((ref) => !ref.current)) return;
 
+      chartElRefs.forEach((ref, i) => {
+        const chart = chartRefs.current[i] = createChart(
+          ref.current as HTMLDivElement,{
+            height: 300,
+            width: chartElRefs[i].current.clientWidth,
+            ...chartsData[i].chart,
+          }
+        );
+        
         chart.timeScale().fitContent();
 
-        for (const seriesObject of series){
+        for (const series of chartsData[i].series){
           
-          let newSeries
-          switch(seriesObject.type) {
+          let chartSeries
+          switch(series.type) {
             case 'Area':
-              newSeries = chart.addAreaSeries(seriesObject.options)
+              chartSeries = chart.addAreaSeries(series.options)
               break
             case 'Bar':
-              newSeries = chart.addBarSeries(seriesObject.options )
+              chartSeries = chart.addBarSeries(series.options )
               break
             case 'Baseline':
-              newSeries = chart.addBaselineSeries(seriesObject.options)
+              chartSeries = chart.addBaselineSeries(series.options)
               break
             case 'Candlestick':
-              newSeries = chart.addCandlestickSeries(seriesObject.options)
+              chartSeries = chart.addCandlestickSeries(series.options)
               break
             case 'Histogram':
-              newSeries = chart.addHistogramSeries(seriesObject.options)
+              chartSeries = chart.addHistogramSeries(series.options)
               break
             case 'Line':
-              newSeries = chart.addLineSeries(seriesObject.options)
+              chartSeries = chart.addLineSeries(series.options)
               break
             default:
                 return
           }
 
-          if(seriesObject.priceScale)
-            chart.priceScale(seriesObject.options.priceScaleId || '').applyOptions(seriesObject.priceScale)
+          if(series.priceScale)
+            chart.priceScale(series.options.priceScaleId || '').applyOptions(series.priceScale)
 
-          newSeries.setData(seriesObject.data)
+          chartSeries.setData(series.data)
         }
+        
+      })
+  
+      const charts = chartRefs.current.map((c) => c as IChartApi);
+      
+      if(chartsData.length > 1){ // sync charts
+        charts.forEach((chart) => {
+          if (!chart) return;
 
-        window.addEventListener('resize', handleResize)
-        return () => { // required because how useEffect() works 
-          window.removeEventListener('resize', handleResize)
+          chart.timeScale().subscribeVisibleTimeRangeChange((e) => {
+            charts
+              .filter((c) => c !== chart)
+              .forEach((c) => {
+                c.timeScale().applyOptions({
+                  rightOffset: chart.timeScale().scrollPosition()
+                })
+              })
+          })
+          chart.timeScale().subscribeVisibleLogicalRangeChange((range) => {
+            if (range) {
+              charts
+                .filter((c) => c !== chart)
+                .forEach((c) => {
+                  c.timeScale().setVisibleLogicalRange({
+                    from: range?.from,
+                    to: range?.to
+      }) }) } }) }) }
+
+      // const handleResize = () => {
+      //   chart.applyOptions({ width: chartsContainerRef?.current?.clientWidth })
+      // }
+      // window.addEventListener('resize', handleResize)
+      return () => { // required because how useEffect() works
+        charts.forEach((chart) => {
           chart.remove()
-        }
+        })
       }
-		},
-		[series, chartOptions]
-	)
 
-	return (
-		<div ref={chartContainerRef} />
-	)
+    }, [ chartsData, chartElRefs, chartRefs])
+  
+    return (
+      <div ref={chartsContainerRef}>
+        {chartElRefs.map((ref, i) => (
+          <div
+            ref={ref}
+            id={`lightweight-charts-${i}`}
+            key={`lightweight-charts-${i}`}
+          />
+        ))}
+      </div>
+    )
+
 }
 
-export default LightweightCharts
+export default LightweightChartsMultiplePanes
