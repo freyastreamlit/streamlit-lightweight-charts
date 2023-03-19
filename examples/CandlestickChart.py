@@ -1,5 +1,5 @@
 import streamlit as st
-from streamlit_lightweight_charts import renderLightweightChart
+from streamlit_lightweight_charts import renderLightweightCharts
 
 chartOptions = {
     "layout": {
@@ -35,4 +35,10 @@ seriesCandlestickChart = [{
 }]
 
 st.subheader("Candlestick Chart sample")
-renderLightweightChart( chartOptions, seriesCandlestickChart, 'candlestick')
+
+renderLightweightCharts([
+    {
+        "chart": chartOptions,
+        "series": seriesCandlestickChart
+    }
+], 'candlestick')

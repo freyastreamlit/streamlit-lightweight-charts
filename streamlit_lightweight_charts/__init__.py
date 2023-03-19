@@ -8,12 +8,12 @@ _COMPONENT_NAME = "streamlit_lightweight_charts"
 _RELEASE = True
 
 class Chart(str, Enum):
-    area = 'addAreaSeries'
-    baseline = 'addBaselineSeries'
-    histogram = 'addHistogramSeries'
-    line = 'addLineSeries'
-    bar = 'addBarSeries'
-    candlestick = 'addCandlestickSeries'
+    Area = 'addAreaSeries'
+    Baseline = 'addBaselineSeries'
+    Histogram = 'addHistogramSeries'
+    Line = 'addLineSeries'
+    Bar = 'addBarSeries'
+    Candlestick = 'addCandlestickSeries'
 
 if not _RELEASE:
     _component_func = components.declare_component(
@@ -33,32 +33,33 @@ else:
 # `declare_component` and call it done. The wrapper allows us to customize
 # our component's API: we can pre-process its input args, post-process its
 # output value, and add a docstring for users.
-def renderLightweightChart(chartOptions: Dict, series: List, key: str = None):
-    """Create a new instance of "renderLightweightChart".
+def renderLightweightCharts(charts: Dict, key: str = None):
+    """Create a new instance of "renderLightweightCharts".
 
     Parameters
     ----------
+    charts: <List of Dicts>
 
-    chartOptions: <Dict>
+        chart: <Dict>
         https://tradingview.github.io/lightweight-charts/docs/api/interfaces/ChartOptions
 
-    series: <List of Dicts>
-        https://tradingview.github.io/lightweight-charts/docs/series-types
+        series: <List of Dicts>
+            https://tradingview.github.io/lightweight-charts/docs/series-types
 
-        type: <str-enum>
-            Area
-            Bar
-            Baseline
-            Candlestick
-            Histogram
-            Line
+            type: <str-enum>
+                Area
+                Bar
+                Baseline
+                Candlestick
+                Histogram
+                Line
 
-        data: <List of Dicts> accordingly to series type
+            data: <List of Dicts> accordingly to series type
 
-        options: <Dict> with style options
+            options: <Dict> with style options
 
-        priceScale: <Dict> optional
-
+            priceScale: <Dict> optional
+    
     key: str or None
         An optional key that uniquely identifies this component. If this is
         None, and the component's arguments are changed, the component will
@@ -66,12 +67,10 @@ def renderLightweightChart(chartOptions: Dict, series: List, key: str = None):
 
     """
 
-    component_value = _component_func(
-        chartOptions=chartOptions,
-        series=series,
+    return _component_func(
+        charts=charts,
         key=key
     )
-    return component_value
 
 
 if not _RELEASE:
@@ -79,6 +78,7 @@ if not _RELEASE:
     import dataSamples as data
 
     chartOptions = {
+        "width": 600,
         "layout": {
             "textColor": 'black',
             "background": {
@@ -88,15 +88,22 @@ if not _RELEASE:
         }
     }
 
+    # AREA chart
     seriesAreaChart = [{
         "type": 'Area',
         "data": data.seriesSingleValueData,
         "options": {}
     }]
     st.subheader("Area Chart sample")
-    renderLightweightChart( chartOptions, seriesAreaChart, 'area')
+    renderLightweightCharts( [
+        {
+            "chart": chartOptions,
+            "series": seriesAreaChart,
+        }
+    ], 'area')
     st.markdown("---")
 
+    # BASELINE chart
     seriesBaselineChart = [{
         "type": 'Baseline',
         "data": data.seriesBaselineChart,
@@ -111,27 +118,45 @@ if not _RELEASE:
         }
     }]
     st.subheader("Baseline Chart sample")
-    renderLightweightChart( chartOptions, seriesBaselineChart, 'baseline')
+    renderLightweightCharts([
+        {
+            "chart": chartOptions,
+            "series": seriesBaselineChart
+        }
+    ], 'baseline')
     st.markdown("---")
 
+    # LINE charts
     seriesLineChart = [{
         "type": 'Line',
         "data": data.seriesSingleValueData,
         "options": {}
     }]
     st.subheader("Line Chart sample")
-    renderLightweightChart(chartOptions, seriesLineChart, 'line')
+    renderLightweightCharts([
+        {
+            "chart": chartOptions,
+            "series": seriesLineChart
+        }
+    ], 'line')
     st.markdown("---")
 
+    # HISTOGRAM chart
     seriesHistogramChart = [{
         "type": 'Histogram',
         "data": data.seriesHistogramChart,
         "options": { "color": '#26a69a' }
     }]
     st.subheader("Histogram Chart sample")
-    renderLightweightChart(chartOptions, seriesHistogramChart, 'histogram')
+    renderLightweightCharts([
+        {
+            "chart": chartOptions,
+            "series": seriesHistogramChart
+        }
+    ], 'histogram')
     st.markdown("---")
 
+    # BAR chart
     seriesBarChart = [{
         "type": 'Bar',
         "data": data.seriesBarChart,
@@ -141,9 +166,15 @@ if not _RELEASE:
         }
     }]
     st.subheader("Bar Chart sample")
-    renderLightweightChart(chartOptions, seriesBarChart, 'bar')
+    renderLightweightCharts([
+        {
+            "chart": chartOptions,
+            "series": seriesBarChart
+        }
+    ], 'bar')
     st.markdown("---")
 
+    # CANDLESTICK chart
     seriesCandlestickChart = [{
         "type": 'Candlestick',
         "data": data.seriesCandlestickChart,
@@ -156,9 +187,15 @@ if not _RELEASE:
         }
     }]
     st.subheader("Candlestick Chart sample")
-    renderLightweightChart(chartOptions, seriesCandlestickChart, 'candlestick')
+    renderLightweightCharts([
+        {
+            "chart": chartOptions,
+            "series": seriesCandlestickChart
+        }
+    ], 'candlestick')
     st.markdown("---")
 
+    # OVERLAID AREA chart
     overlaidAreaSeriesOptions = {
     	# "width": 600,
         "height": 400,
@@ -192,7 +229,7 @@ if not _RELEASE:
         }
     }
 
-    seriesMultipleChart = [
+    seriesOverlaidChart = [
         {
             "type": 'Area',
             "data": data.seriesMultipleChartArea01,
@@ -215,10 +252,16 @@ if not _RELEASE:
         }
     ]
     st.subheader("Overlaid Series Chart sample")
-    renderLightweightChart(overlaidAreaSeriesOptions, seriesMultipleChart, 'multiple')
+    renderLightweightCharts([
+        {
+            "chart": overlaidAreaSeriesOptions,
+            "series": seriesOverlaidChart
+        }
+    ], 'overlaid')
 
     st.markdown("---")
 
+    # PRICE AND VOLUME chart
     priceVolumeChartOptions = {
     	# "width": 600,
         "height": 400,
@@ -282,5 +325,165 @@ if not _RELEASE:
         }
     ]
     st.subheader("Price and Volume Series Chart sample")
-    renderLightweightChart(priceVolumeChartOptions, priceVolumeSeries)
+    renderLightweightCharts([
+        {
+            "chart": priceVolumeChartOptions,
+            "series": priceVolumeSeries
+        }
+    ], 'priceAndVolume')
+    st.markdown("---")
 
+    # MULTIPANR charts
+    chartMultipaneOptions = [
+        {
+            "width": 600,
+            "height": 400,
+            "layout": {
+                "background": {
+                    "type": "solid",
+                    "color": 'white'
+                },
+                "textColor": "black"
+            },
+            "grid": {
+                "vertLines": {
+                    "color": "rgba(197, 203, 206, 0.5)"
+                    },
+                "horzLines": {
+                    "color": "rgba(197, 203, 206, 0.5)"
+                }
+            },
+            # "crosshair": {
+            #     "mode": 0
+            # },
+            "priceScale": {
+                "borderColor": "rgba(197, 203, 206, 0.8)"
+            },
+            "timeScale": {
+                "borderColor": "rgba(197, 203, 206, 0.8)",
+                "barSpacing": 15
+                # "fixLeftEdge": True,
+            }
+        },
+        {
+            "width": 600,
+            "height": 100,
+            "rightPriceScale": {
+                "scaleMargins": {
+                    "top": 0.2,
+                    "bottom": 0.25,
+                },
+                # "borderVisible": False,
+            },
+            "overlayPriceScales": {
+                "scaleMargins": {
+                    "top": 0.7,
+                    "bottom": 0,
+                }
+            },
+            "crosshair": {
+                "mode": 0
+            },
+            "layout": {
+                "background": {
+                    "type": 'solid',
+                    "color": 'white'
+                },
+                "textColor": 'black',
+            },
+            "grid": {
+                "vertLines": {
+                    "color": 'rgba(42, 46, 57, 0)',
+                },
+                "horzLines": {
+                    "color": 'rgba(42, 46, 57, 0.6)',
+                }
+            },
+            "timeScale": {
+                "visible": False,
+            }
+        },
+        {
+            "width": 600,
+            "height": 200,
+            "layout": {
+                "background": {
+                    "type": "solid",
+                    "color": 'white'
+                },
+                "textColor": "black"
+            },
+            "timeScale": {
+                "visible": False,
+            }
+        }
+
+    ]
+
+    seriesCandlestickChart = [
+        {
+            "type": 'Candlestick',
+            "data": data.priceCandlestickMultipane,
+            "options": {
+                "upColor": '#26a69a',
+                "downColor": '#ef5350',
+                "borderVisible": False,
+                "wickUpColor": '#26a69a',
+                "wickDownColor": '#ef5350'
+            }
+        }
+    ]
+    
+    seriesAreaChart = [
+        {
+            "type": 'Baseline',
+            "data": data.priceBaselineMultipane,
+            "options": {
+                "baseValue": { "type": "price", "price": 180 },
+                "topLineColor": 'rgba( 38, 166, 154, 1)',
+                "topFillColor1": 'rgba( 38, 166, 154, 0.28)',
+                "topFillColor2": 'rgba( 38, 166, 154, 0.05)',
+                "bottomLineColor": 'rgba( 239, 83, 80, 1)',
+                "bottomFillColor1": 'rgba( 239, 83, 80, 0.05)',
+                "bottomFillColor2": 'rgba( 239, 83, 80, 0.28)'
+            }
+        }
+    ]
+
+    seriesHistogramChart = [
+        {
+            "type": 'Histogram',
+            "data": data.priceVolumeMultipane,
+            "options": {
+                "color": '#26a69a',
+                "priceFormat": {
+                    "type": 'volume',
+                },
+                "priceScaleId": "" # set as an overlay setting,
+            },
+            "priceScale": {
+                "scaleMargins": {
+                    "top": 0,
+                    "bottom": 0,
+                },
+                "alignLabels": False
+            }
+        }
+    ]
+
+    st.subheader("Multipane Chart sample")
+    renderLightweightCharts([
+        {
+            "chart": chartMultipaneOptions[0],
+            "series": seriesCandlestickChart
+        },
+        {
+            "chart": chartMultipaneOptions[1],
+            "series": seriesHistogramChart
+        },
+                {
+            "chart": chartMultipaneOptions[2],
+            "series": seriesAreaChart
+        }
+    ], 'multipane')
+    st.markdown("---")
