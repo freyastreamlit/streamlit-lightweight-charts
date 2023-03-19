@@ -9,7 +9,7 @@ The Lightweight Charts library is the best choice to display financial data as a
 
 ## How to use:
 ```
-renderLightweightCharts(charts:Dict, series:List)
+renderLightweightCharts(charts: <List of Dicts> , key: <str>)
 ```
 
 ### API
@@ -28,9 +28,9 @@ renderLightweightCharts(charts:Dict, series:List)
 
         - priceScale: `<Dict>` optional
 
-- key: `<str>` when creating multiple charts in the same page
+- key: `<str>` when creating multiple charts in one page
 
-<br/><br/>
+<br/>
 
 # e.g.:
 <br />

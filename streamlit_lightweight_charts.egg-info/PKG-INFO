@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: streamlit-lightweight-charts
-Version: 0.7.10
+Version: 0.7.11
 Summary: Wrapper for TradingView lightweight-charts
 Home-page: https://github.com/freyastreamlit/streamlit-lightweight-charts
 Author: Joe Rosa
@@ -17,7 +17,7 @@ Description: # streamlit-lightweight-charts
         
         ## How to use:
         ```
-        renderLightweightCharts(charts:Dict, series:List)
+        renderLightweightCharts(charts: <List of Dicts> , key: <str>)
         ```
         
         ### API
@@ -36,9 +36,9 @@ Description: # streamlit-lightweight-charts
         
                 - priceScale: `<Dict>` optional
         
-        - key: `<str>` when creating multiple charts in the same page
+        - key: `<str>` when creating multiple charts in one page
         
-        <br/><br/>
+        <br/>
         
         # e.g.:
         <br />
