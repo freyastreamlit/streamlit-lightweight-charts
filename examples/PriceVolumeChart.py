@@ -1,5 +1,5 @@
 import streamlit as st
-from streamlit_lightweight_charts import renderLightweightChart
+from streamlit_lightweight_charts import renderLightweightCharts
 
 priceVolumeChartOptions = {
     "height": 400,
@@ -191,5 +191,11 @@ priceVolumeSeries = [
     }
 ]
 st.subheader("Price with Volume Series Chart sample")
-renderLightweightChart(priceVolumeChartOptions, priceVolumeSeries)
+
+renderLightweightCharts([
+    {
+        "chart": priceVolumeChartOptions,
+        "series": priceVolumeSeries
+    }
+], 'priceAndVolume')
 

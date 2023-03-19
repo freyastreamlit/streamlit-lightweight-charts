@@ -1,5 +1,7 @@
 # streamlit-lightweight-charts
-Streamlit wrapper for Tradingview's Financial: `lightweight-charts`
+Streamlit wrapper for performant Tradingview's Financial: `lightweight-charts`
+
+The Lightweight Charts library is the best choice to display financial data as an interactive chart on a web page without affecting loading speed and performance.
 
 - [Features Demo](https://www.tradingview.com/lightweight-charts/)
 - [Documentation](https://tradingview.github.io/lightweight-charts/)
@@ -7,21 +9,27 @@ Streamlit wrapper for Tradingview's Financial: `lightweight-charts`
 
 ## How to use:
 ```
-renderLightweightChart(chartOptions:Dict, series:List)
+renderLightweightCharts(charts:Dict, series:List)
 ```
-- [chartOptions](https://tradingview.github.io/lightweight-charts/docs/api/interfaces/ChartOptions): `<Dict>`
-- [series](https://tradingview.github.io/lightweight-charts/docs/series-types): `<List of Dicts>`
-    - type: `<str-enum>`
-        - Area
-        - Bar
-        - Baseline
-        - Candlestick
-        - Histogram
-        - Line
-    - data: `<List of Dicts>` accordingly to series type
-    - options: `<Dict>` with style options
-    - priceScale: `<Dict>` optional
-- key: `<str>` when creating multiple charts on some page
+
+### API
+- charts: `<List of Dicts>`
+
+    - [chart](https://tradingview.github.io/lightweight-charts/docs/api/interfaces/ChartOptions): `<Dict>`
+
+    - [series](https://tradingview.github.io/lightweight-charts/docs/series-types): `<List of Dicts>`
+
+        - [type](https://tradingview.github.io/lightweight-charts/docs/series-types): `<str-enum>`
+            [ Area, Bar, Baseline, Candlestick, Histogram, Line ]
+
+        - data: `<List of Dicts>` accordingly to series type
+
+        - options: `<Dict>` with style options
+
+        - priceScale: `<Dict>` optional
+
+- key: `<str>` when creating multiple charts in the same page
+
 <br/><br/>
 
 # e.g.:
@@ -33,8 +41,8 @@ renderLightweightChart(chartOptions:Dict, series:List)
 
 ```python
 import streamlit as st
-from streamlit_lightweight_charts import renderLightweightChart
-import dataSamples as data
+from streamlit_lightweight_charts import renderLightweightCharts
+import streamlit_lightweight_charts.dataSamples as data
 
 priceVolumeChartOptions = {
     "height": 400,
@@ -98,7 +106,13 @@ priceVolumeSeries = [
     }
 ]
 st.subheader("Price and Volume Series Chart sample")
-renderLightweightChart(priceVolumeChartOptions, priceVolumeSeries)
+
+renderLightweightCharts([
+    {
+        "chart": priceVolumeChartOptions,
+        "series": priceVolumeSeries
+    }
+], 'priceAndVolume')
 ```
 ---
 <br />
@@ -107,8 +121,8 @@ renderLightweightChart(priceVolumeChartOptions, priceVolumeSeries)
 
 ```python
 import streamlit as st
-from streamlit_lightweight_charts import renderLightweightChart
-import dataSamples as data
+from streamlit_lightweight_charts import renderLightweightCharts
+import streamlit_lightweight_charts.dataSamples as data
 
 overlaidAreaSeriesOptions = {
     "height": 400,
@@ -142,7 +156,7 @@ overlaidAreaSeriesOptions = {
     }
 }
 
-seriesMultipleChart = [
+seriesOverlaidChart = [
     {
         "type": 'Area',
         "data": data.seriesMultipleChartArea01,
@@ -165,7 +179,178 @@ seriesMultipleChart = [
     }
 ]
 st.subheader("Overlaid Series Chart sample")
-renderLightweightChart(overlaidAreaSeriesOptions, seriesMultipleChart, 'multiple')
+
+renderLightweightCharts([
+    {
+        "chart": overlaidAreaSeriesOptions,
+        "series": seriesOverlaidChart
+    }
+], 'overlaid')
+```
+---
+<br />
+
+# Multi Pane charts
+
+![Multi Pane Charts](https://github.com/freyastreamlit/streamlit-lightweight-charts/blob/main/examples/MultiPaneChart.png?raw=true)
+
+```python
+import streamlit as st
+from streamlit_lightweight_charts import renderLightweightCharts
+import streamlit_lightweight_charts.dataSamples as data
+
+chartMultipaneOptions = [
+    {
+        "width": 600,
+        "height": 400,
+        "layout": {
+            "background": {
+                "type": "solid",
+                "color": 'white'
+            },
+            "textColor": "black"
+        },
+        "grid": {
+            "vertLines": {
+                "color": "rgba(197, 203, 206, 0.5)"
+                },
+            "horzLines": {
+                "color": "rgba(197, 203, 206, 0.5)"
+            }
+        },
+        # "crosshair": {
+        #     "mode": 0
+        # },
+        "priceScale": {
+            "borderColor": "rgba(197, 203, 206, 0.8)"
+        },
+        "timeScale": {
+            "borderColor": "rgba(197, 203, 206, 0.8)",
+            "barSpacing": 15
+            # "fixLeftEdge": True,
+        }
+    },
+    {
+        "width": 600,
+        "height": 100,
+        "rightPriceScale": {
+            "scaleMargins": {
+                "top": 0.2,
+                "bottom": 0.25,
+            },
+            # "borderVisible": False,
+        },
+        "overlayPriceScales": {
+            "scaleMargins": {
+                "top": 0.7,
+                "bottom": 0,
+            }
+        },
+        "crosshair": {
+            "mode": 0
+        },
+        "layout": {
+            "background": {
+                "type": 'solid',
+                "color": 'white'
+            },
+            "textColor": 'black',
+        },
+        "grid": {
+            "vertLines": {
+                "color": 'rgba(42, 46, 57, 0)',
+            },
+            "horzLines": {
+                "color": 'rgba(42, 46, 57, 0.6)',
+            }
+        },
+        "timeScale": {
+            "visible": False,
+        }
+    },
+    {
+        "width": 600,
+        "height": 200,
+        "layout": {
+            "background": {
+                "type": "solid",
+                "color": 'white'
+            },
+            "textColor": "black"
+        },
+        "timeScale": {
+            "visible": False,
+        }
+    }
+]
+
+seriesCandlestickChart = [
+    {
+        "type": 'Candlestick',
+        "data": data.priceCandlestickMultipane,
+        "options": {
+            "upColor": '#26a69a',
+            "downColor": '#ef5350',
+            "borderVisible": False,
+            "wickUpColor": '#26a69a',
+            "wickDownColor": '#ef5350'
+        }
+    }
+]
+
+seriesAreaChart = [
+    {
+        "type": 'Baseline',
+        "data": data.priceBaselineMultipane,
+        "options": {
+            "baseValue": { "type": "price", "price": 180 },
+            "topLineColor": 'rgba( 38, 166, 154, 1)',
+            "topFillColor1": 'rgba( 38, 166, 154, 0.28)',
+            "topFillColor2": 'rgba( 38, 166, 154, 0.05)',
+            "bottomLineColor": 'rgba( 239, 83, 80, 1)',
+            "bottomFillColor1": 'rgba( 239, 83, 80, 0.05)',
+            "bottomFillColor2": 'rgba( 239, 83, 80, 0.28)'
+        }
+    }
+]
+
+seriesHistogramChart = [
+    {
+        "type": 'Histogram',
+        "data": data.priceVolumeMultipane,
+        "options": {
+            "color": '#26a69a',
+            "priceFormat": {
+                "type": 'volume',
+            },
+            "priceScaleId": "" # set as an overlay setting,
+        },
+        "priceScale": {
+            "scaleMargins": {
+                "top": 0,
+                "bottom": 0,
+            },
+            "alignLabels": False
+        }
+    }
+]
+
+st.subheader("Multipane Chart sample")
+renderLightweightCharts([
+    {
+        "chart": chartMultipaneOptions[0],
+        "series": seriesCandlestickChart
+    },
+    {
+        "chart": chartMultipaneOptions[1],
+        "series": seriesHistogramChart
+    },
+            {
+        "chart": chartMultipaneOptions[2],
+        "series": seriesAreaChart
+    }
+], 'multipane')
+
 ```
 ---
 <br />
@@ -176,7 +361,7 @@ renderLightweightChart(overlaidAreaSeriesOptions, seriesMultipleChart, 'multiple
 
 ```python
 import streamlit as st
-from streamlit_lightweight_charts import renderLightweightChart
+from streamlit_lightweight_charts import renderLightweightCharts
 
 chartOptions = {
     "layout": {
@@ -206,7 +391,13 @@ seriesLineChart = [{
 }]
 
 st.subheader("Line Chart sample")
-renderLightweightChart( chartOptions, seriesLineChart, 'line')
+
+renderLightweightCharts([
+    {
+        "chart": chartOptions,
+        "series": seriesLineChart
+    }
+], 'line')
 ```
 ---
 <br />
@@ -215,7 +406,7 @@ renderLightweightChart( chartOptions, seriesLineChart, 'line')
 
 ```python
 import streamlit as st
-from streamlit_lightweight_charts import renderLightweightChart
+from streamlit_lightweight_charts import renderLightweightCharts
 
 chartOptions = {
     "layout": {
@@ -245,7 +436,12 @@ seriesAreaChart = [{
 }]
 
 st.subheader("Area Chart sample")
-renderLightweightChart( chartOptions, seriesAreaChart, 'area')
+renderLightweightCharts( [
+    {
+        "chart": chartOptions,
+        "series": seriesAreaChart,
+    }
+], 'area')
 ```
 ---
 <br />
@@ -254,7 +450,7 @@ renderLightweightChart( chartOptions, seriesAreaChart, 'area')
 
 ```python
 import streamlit as st
-from streamlit_lightweight_charts import renderLightweightChart
+from streamlit_lightweight_charts import renderLightweightCharts
 
 chartOptions = {
     "layout": {
@@ -284,7 +480,13 @@ seriesHistogramChart = [{
 }]
 
 st.subheader("Histogram Chart sample")
-renderLightweightChart( chartOptions, seriesHistogramChart, 'histogram')
+
+renderLightweightCharts([
+    {
+        "chart": chartOptions,
+        "series": seriesHistogramChart
+    }
+], 'histogram')
 ```
 ---
 <br />
@@ -293,7 +495,7 @@ renderLightweightChart( chartOptions, seriesHistogramChart, 'histogram')
 
 ```python
 import streamlit as st
-from streamlit_lightweight_charts import renderLightweightChart
+from streamlit_lightweight_charts import renderLightweightCharts
 
 chartOptions = {
     "layout": {
@@ -326,7 +528,12 @@ seriesBarChart = [{
 }]
 
 st.subheader("Bar Chart sample")
-renderLightweightChart( chartOptions, seriesBarChart, 'bar')
+renderLightweightCharts([
+    {
+        "chart": chartOptions,
+        "series": seriesBarChart
+    }
+], 'bar')
 ```
 ---
 <br />
@@ -335,7 +542,7 @@ renderLightweightChart( chartOptions, seriesBarChart, 'bar')
 
 ```python
 import streamlit as st
-from streamlit_lightweight_charts import renderLightweightChart
+from streamlit_lightweight_charts import renderLightweightCharts
 
 chartOptions = {
     "layout": {
@@ -371,7 +578,13 @@ seriesCandlestickChart = [{
 }]
 
 st.subheader("Candlestick Chart sample")
-renderLightweightChart( chartOptions, seriesCandlestickChart, 'candlestick')
+
+renderLightweightCharts([
+    {
+        "chart": chartOptions,
+        "series": seriesCandlestickChart
+    }
+], 'candlestick')
 ```
 ---
 <br />
@@ -380,7 +593,7 @@ renderLightweightChart( chartOptions, seriesCandlestickChart, 'candlestick')
 
 ```python
 import streamlit as st
-from streamlit_lightweight_charts import renderLightweightChart
+from streamlit_lightweight_charts import renderLightweightCharts
 
 chartOptions = {
     "layout": {
@@ -418,5 +631,11 @@ seriesBaselineChart = [{
 }]
 
 st.subheader("Baseline Chart sample")
-renderLightweightChart( chartOptions, seriesBaselineChart, 'baseline')
+
+renderLightweightCharts([
+    {
+        "chart": chartOptions,
+        "series": seriesBaselineChart
+    }
+], 'baseline')
 ```
