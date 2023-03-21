@@ -7,8 +7,9 @@ The Lightweight Charts library is the best choice to display financial data as a
 - [Documentation](https://tradingview.github.io/lightweight-charts/)
 - [GitHub](https://github.com/tradingview/lightweight-charts)
 
-### Versioons
+### Versions
 Version 0.7.12 - Added "markers" to series
+Version 0.7.13 - Example of watermarks
 
 ## How to use:
 ```
