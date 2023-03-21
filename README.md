@@ -7,6 +7,9 @@ The Lightweight Charts library is the best choice to display financial data as a
 - [Documentation](https://tradingview.github.io/lightweight-charts/)
 - [GitHub](https://github.com/tradingview/lightweight-charts)
 
+### Versioons
+Version 0.7.12 - Added "markers" to series
+
 ## How to use:
 ```
 renderLightweightCharts(charts: <List of Dicts> , key: <str>)
@@ -165,7 +168,25 @@ seriesOverlaidChart = [
             "bottomColor": 'rgba(255, 192, 0, 0.3)',
             "lineColor": 'rgba(255, 192, 0, 1)',
             "lineWidth": 2,
-        }
+        },
+        "markers": [
+            {
+                "time": '2019-04-08',
+                "position": 'aboveBar',
+                "color": 'rgba(255, 192, 0, 1)',
+                "shape": 'arrowDown',
+                "text": 'H',
+                "size": 3
+            },
+            {
+                "time": '2019-05-13',
+                "position": 'belowBar',
+                "color": 'rgba(255, 192, 0, 1)',
+                "shape": 'arrowUp',
+                "text": 'L',
+                "size": 3
+            },
+        ]
     },
     {
         "type": 'Area',
@@ -175,7 +196,18 @@ seriesOverlaidChart = [
             "bottomColor": 'rgba(67, 83, 254, 0.3)',
             "lineColor": 'rgba(67, 83, 254, 1)',
             "lineWidth": 2,
-        }
+        },
+        "markers": [
+
+            {
+                "time": '2019-05-03',
+                "position": 'aboveBar',
+                "color": 'rgba(67, 83, 254, 1)',
+                "shape": 'arrowDown',
+                "text": 'H',
+                "size": 3
+            },
+        ]
     }
 ]
 st.subheader("Overlaid Series Chart sample")
