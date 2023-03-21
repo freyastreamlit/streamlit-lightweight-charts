@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: streamlit-lightweight-charts
-Version: 0.7.11
+Version: 0.7.12
 Summary: Wrapper for TradingView lightweight-charts
 Home-page: https://github.com/freyastreamlit/streamlit-lightweight-charts
 Author: Joe Rosa
@@ -14,6 +14,9 @@ Description: # streamlit-lightweight-charts
         - [Features Demo](https://www.tradingview.com/lightweight-charts/)
         - [Documentation](https://tradingview.github.io/lightweight-charts/)
         - [GitHub](https://github.com/tradingview/lightweight-charts)
+        
+        ### Versioons
+        Version 0.7.12 - Added "markers" to series
         
         ## How to use:
         ```
@@ -173,7 +176,25 @@ Description: # streamlit-lightweight-charts
                     "bottomColor": 'rgba(255, 192, 0, 0.3)',
                     "lineColor": 'rgba(255, 192, 0, 1)',
                     "lineWidth": 2,
-                }
+                },
+                "markers": [
+                    {
+                        "time": '2019-04-08',
+                        "position": 'aboveBar',
+                        "color": 'rgba(255, 192, 0, 1)',
+                        "shape": 'arrowDown',
+                        "text": 'H',
+                        "size": 3
+                    },
+                    {
+                        "time": '2019-05-13',
+                        "position": 'belowBar',
+                        "color": 'rgba(255, 192, 0, 1)',
+                        "shape": 'arrowUp',
+                        "text": 'L',
+                        "size": 3
+                    },
+                ]
             },
             {
                 "type": 'Area',
@@ -183,7 +204,18 @@ Description: # streamlit-lightweight-charts
                     "bottomColor": 'rgba(67, 83, 254, 0.3)',
                     "lineColor": 'rgba(67, 83, 254, 1)',
                     "lineWidth": 2,
-                }
+                },
+                "markers": [
+        
+                    {
+                        "time": '2019-05-03',
+                        "position": 'aboveBar',
+                        "color": 'rgba(67, 83, 254, 1)',
+                        "shape": 'arrowDown',
+                        "text": 'H',
+                        "size": 3
+                    },
+                ]
             }
         ]
         st.subheader("Overlaid Series Chart sample")
