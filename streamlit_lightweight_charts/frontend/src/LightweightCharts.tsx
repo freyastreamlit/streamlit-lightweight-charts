@@ -27,8 +27,6 @@ const LightweightChartsMultiplePanes: React.VFC = () => {
             ...chartsData[i].chart,
           }
         );
-        
-        chart.timeScale().fitContent();
 
         for (const series of chartsData[i].series){
           
@@ -60,8 +58,13 @@ const LightweightChartsMultiplePanes: React.VFC = () => {
             chart.priceScale(series.options.priceScaleId || '').applyOptions(series.priceScale)
 
           chartSeries.setData(series.data)
+
+          if(series.markers)
+            chartSeries.setMarkers(series.markers)
         }
-        
+
+        chart.timeScale().fitContent();
+
       })
   
       const charts = chartRefs.current.map((c) => c as IChartApi);

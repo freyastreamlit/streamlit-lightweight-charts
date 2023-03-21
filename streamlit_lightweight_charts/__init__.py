@@ -1,6 +1,5 @@
 import os
 from typing import Dict
-from typing import List
 from enum import Enum
 import streamlit.components.v1 as components
 
@@ -238,7 +237,25 @@ if not _RELEASE:
                 "bottomColor": 'rgba(255, 192, 0, 0.3)',
                 "lineColor": 'rgba(255, 192, 0, 1)',
                 "lineWidth": 2,
-            }
+            },
+            "markers": [
+                {
+                    "time": '2019-04-08',
+                    "position": 'aboveBar',
+                    "color": 'rgba(255, 192, 0, 1)',
+                    "shape": 'arrowDown',
+                    "text": 'H',
+                    "size": 3
+                },
+                {
+                    "time": '2019-05-13',
+                    "position": 'belowBar',
+                    "color": 'rgba(255, 192, 0, 1)',
+                    "shape": 'arrowUp',
+                    "text": 'L',
+                    "size": 3
+                },
+            ]
         },
         {
             "type": 'Area',
@@ -248,10 +265,21 @@ if not _RELEASE:
                 "bottomColor": 'rgba(67, 83, 254, 0.3)',
                 "lineColor": 'rgba(67, 83, 254, 1)',
                 "lineWidth": 2,
-            }
+            },
+            "markers": [
+
+                {
+                    "time": '2019-05-03',
+                    "position": 'aboveBar',
+                    "color": 'rgba(67, 83, 254, 1)',
+                    "shape": 'arrowDown',
+                    "text": 'H',
+                    "size": 3
+                },
+            ]
         }
     ]
-    st.subheader("Overlaid Series Chart sample")
+    st.subheader("Overlaid Series with Markers")
     renderLightweightCharts([
         {
             "chart": overlaidAreaSeriesOptions,
