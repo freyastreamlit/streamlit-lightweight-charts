@@ -21,41 +21,35 @@ chartMultipaneOptions = [
                 "color": "rgba(197, 203, 206, 0.5)"
             }
         },
-        # "crosshair": {
-        #     "mode": 0
-        # },
+        "crosshair": {
+            "mode": 0
+        },
         "priceScale": {
             "borderColor": "rgba(197, 203, 206, 0.8)"
         },
         "timeScale": {
             "borderColor": "rgba(197, 203, 206, 0.8)",
             "barSpacing": 15
-            # "fixLeftEdge": True,
+        },
+        "watermark": {
+            "visible": True,
+            "fontSize": 48,
+            "horzAlign": 'center',
+            "vertAlign": 'center',
+            "color": 'rgba(171, 71, 188, 0.3)',
+            "text": 'Watermark Price',
         }
     },
     {
         "width": 600,
         "height": 100,
-        "rightPriceScale": {
-            "scaleMargins": {
-                "top": 0.2,
-                "bottom": 0.25,
-            },
-            # "borderVisible": False,
-        },
-        "overlayPriceScales": {
-            "scaleMargins": {
-                "top": 0.7,
-                "bottom": 0,
-            }
-        },
         "crosshair": {
             "mode": 0
         },
         "layout": {
             "background": {
                 "type": 'solid',
-                "color": 'white'
+                "color": 'transparent'
             },
             "textColor": 'black',
         },
@@ -139,7 +133,7 @@ seriesHistogramChart = [
     }
 ]
 
-st.subheader("Multipane Chart sample")
+st.subheader("Multipane Chart with Watermark")
 
 renderLightweightCharts([
     {

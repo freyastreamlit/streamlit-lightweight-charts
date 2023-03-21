@@ -93,7 +93,7 @@ if not _RELEASE:
         "data": data.seriesSingleValueData,
         "options": {}
     }]
-    st.subheader("Area Chart sample")
+    st.subheader("Area Chart")
     renderLightweightCharts( [
         {
             "chart": chartOptions,
@@ -116,7 +116,7 @@ if not _RELEASE:
             "bottomFillColor2": 'rgba( 239, 83, 80, 0.28)'
         }
     }]
-    st.subheader("Baseline Chart sample")
+    st.subheader("Baseline Chart")
     renderLightweightCharts([
         {
             "chart": chartOptions,
@@ -131,7 +131,7 @@ if not _RELEASE:
         "data": data.seriesSingleValueData,
         "options": {}
     }]
-    st.subheader("Line Chart sample")
+    st.subheader("Line Chart")
     renderLightweightCharts([
         {
             "chart": chartOptions,
@@ -146,7 +146,7 @@ if not _RELEASE:
         "data": data.seriesHistogramChart,
         "options": { "color": '#26a69a' }
     }]
-    st.subheader("Histogram Chart sample")
+    st.subheader("Histogram Chart")
     renderLightweightCharts([
         {
             "chart": chartOptions,
@@ -164,7 +164,7 @@ if not _RELEASE:
             "downColor": '#ef5350'
         }
     }]
-    st.subheader("Bar Chart sample")
+    st.subheader("Bar Chart")
     renderLightweightCharts([
         {
             "chart": chartOptions,
@@ -185,7 +185,7 @@ if not _RELEASE:
             "wickDownColor": '#ef5350'
         }
     }]
-    st.subheader("Candlestick Chart sample")
+    st.subheader("Candlestick Chart")
     renderLightweightCharts([
         {
             "chart": chartOptions,
@@ -273,7 +273,7 @@ if not _RELEASE:
                     "position": 'aboveBar',
                     "color": 'rgba(67, 83, 254, 1)',
                     "shape": 'arrowDown',
-                    "text": 'H',
+                    "text": 'PEAK',
                     "size": 3
                 },
             ]
@@ -352,7 +352,7 @@ if not _RELEASE:
             }
         }
     ]
-    st.subheader("Price and Volume Series Chart sample")
+    st.subheader("Price and Volume Series Chart")
     renderLightweightCharts([
         {
             "chart": priceVolumeChartOptions,
@@ -361,7 +361,7 @@ if not _RELEASE:
     ], 'priceAndVolume')
     st.markdown("---")
 
-    # MULTIPANR charts
+    # MULTIPANE charts
     chartMultipaneOptions = [
         {
             "width": 600,
@@ -381,9 +381,9 @@ if not _RELEASE:
                     "color": "rgba(197, 203, 206, 0.5)"
                 }
             },
-            # "crosshair": {
-            #     "mode": 0
-            # },
+            "crosshair": {
+                "mode": 0
+            },
             "priceScale": {
                 "borderColor": "rgba(197, 203, 206, 0.8)"
             },
@@ -391,31 +391,26 @@ if not _RELEASE:
                 "borderColor": "rgba(197, 203, 206, 0.8)",
                 "barSpacing": 15
                 # "fixLeftEdge": True,
-            }
+            },
+            "watermark": {
+                "visible": True,
+                "fontSize": 48,
+                "horzAlign": 'center',
+                "vertAlign": 'center',
+                "color": 'rgba(171, 71, 188, 0.3)',
+                "text": 'Watermark Price',
+            },
         },
         {
             "width": 600,
             "height": 100,
-            "rightPriceScale": {
-                "scaleMargins": {
-                    "top": 0.2,
-                    "bottom": 0.25,
-                },
-                # "borderVisible": False,
-            },
-            "overlayPriceScales": {
-                "scaleMargins": {
-                    "top": 0.7,
-                    "bottom": 0,
-                }
-            },
             "crosshair": {
                 "mode": 0
             },
             "layout": {
                 "background": {
                     "type": 'solid',
-                    "color": 'white'
+                    "color": 'transparent'
                 },
                 "textColor": 'black',
             },
@@ -499,7 +494,7 @@ if not _RELEASE:
         }
     ]
 
-    st.subheader("Multipane Chart sample")
+    st.subheader("Multipane Chart with Watermark")
     renderLightweightCharts([
         {
             "chart": chartMultipaneOptions[0],
