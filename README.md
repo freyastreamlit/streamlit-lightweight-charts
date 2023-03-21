@@ -31,6 +31,8 @@ renderLightweightCharts(charts: <List of Dicts> , key: <str>)
 
         - priceScale: `<Dict>` optional
 
+        - markers: `<List of Dicts>` optional
+
 - key: `<str>` when creating multiple charts in one page
 
 <br/>
@@ -108,7 +110,7 @@ priceVolumeSeries = [
         }
     }
 ]
-st.subheader("Price and Volume Series Chart sample")
+st.subheader("Price and Volume Series Chart")
 
 renderLightweightCharts([
     {
@@ -204,13 +206,13 @@ seriesOverlaidChart = [
                 "position": 'aboveBar',
                 "color": 'rgba(67, 83, 254, 1)',
                 "shape": 'arrowDown',
-                "text": 'H',
+                "text": 'PEAK',
                 "size": 3
             },
         ]
     }
 ]
-st.subheader("Overlaid Series Chart sample")
+st.subheader("Overlaid Series with Markers")
 
 renderLightweightCharts([
     {
@@ -222,9 +224,9 @@ renderLightweightCharts([
 ---
 <br />
 
-# Multi Pane charts
+# Multipane chart
 
-![Multi Pane Charts](https://github.com/freyastreamlit/streamlit-lightweight-charts/blob/main/examples/MultiPaneChart.png?raw=true)
+![Multi Pane Chart with Watermark](https://github.com/freyastreamlit/streamlit-lightweight-charts/blob/main/examples/MultiPaneChart.png?raw=true)
 
 ```python
 import streamlit as st
@@ -250,41 +252,35 @@ chartMultipaneOptions = [
                 "color": "rgba(197, 203, 206, 0.5)"
             }
         },
-        # "crosshair": {
-        #     "mode": 0
-        # },
+        "crosshair": {
+            "mode": 0
+        },
         "priceScale": {
             "borderColor": "rgba(197, 203, 206, 0.8)"
         },
         "timeScale": {
             "borderColor": "rgba(197, 203, 206, 0.8)",
             "barSpacing": 15
-            # "fixLeftEdge": True,
+        },
+        "watermark": {
+            "visible": True,
+            "fontSize": 48,
+            "horzAlign": 'center',
+            "vertAlign": 'center',
+            "color": 'rgba(171, 71, 188, 0.3)',
+            "text": 'Watermark Price',
         }
     },
     {
         "width": 600,
         "height": 100,
-        "rightPriceScale": {
-            "scaleMargins": {
-                "top": 0.2,
-                "bottom": 0.25,
-            },
-            # "borderVisible": False,
-        },
-        "overlayPriceScales": {
-            "scaleMargins": {
-                "top": 0.7,
-                "bottom": 0,
-            }
-        },
         "crosshair": {
             "mode": 0
         },
         "layout": {
             "background": {
                 "type": 'solid',
-                "color": 'white'
+                "color": 'transparent'
             },
             "textColor": 'black',
         },
@@ -367,7 +363,7 @@ seriesHistogramChart = [
     }
 ]
 
-st.subheader("Multipane Chart sample")
+st.subheader("Multipane Chart with Watermark")
 renderLightweightCharts([
     {
         "chart": chartMultipaneOptions[0],
@@ -422,7 +418,7 @@ seriesLineChart = [{
     "options": {}
 }]
 
-st.subheader("Line Chart sample")
+st.subheader("Line Chart with Watermark")
 
 renderLightweightCharts([
     {
@@ -467,7 +463,7 @@ seriesAreaChart = [{
     "options": {}
 }]
 
-st.subheader("Area Chart sample")
+st.subheader("Area Chart with Watermark")
 renderLightweightCharts( [
     {
         "chart": chartOptions,
@@ -511,7 +507,7 @@ seriesHistogramChart = [{
     "options": { "color": '#26a69a' }
 }]
 
-st.subheader("Histogram Chart sample")
+st.subheader("Histogram Chart with Watermark")
 
 renderLightweightCharts([
     {
@@ -559,7 +555,7 @@ seriesBarChart = [{
     }
 }]
 
-st.subheader("Bar Chart sample")
+st.subheader("Bar Chart with Watermark")
 renderLightweightCharts([
     {
         "chart": chartOptions,
@@ -609,7 +605,7 @@ seriesCandlestickChart = [{
     }
 }]
 
-st.subheader("Candlestick Chart sample")
+st.subheader("Candlestick Chart with Watermark")
 
 renderLightweightCharts([
     {
@@ -662,7 +658,7 @@ seriesBaselineChart = [{
     }
 }]
 
-st.subheader("Baseline Chart sample")
+st.subheader("Baseline Chart with Watermark")
 
 renderLightweightCharts([
     {
