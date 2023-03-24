@@ -236,7 +236,7 @@ Description: # streamlit-lightweight-charts
         
         # Multipane chart with Pandas
         
-        ![Multi Pane Chart with Pandas](https://github.com/freyastreamlit/streamlit-lightweight-charts/blob/main/examples/MultiPaneChartWithPandas.png?raw=true)
+        ![Multi Pane Chart with Pandas](https://github.com/freyastreamlit/streamlit-lightweight-charts/blob/main/examples/MultiPaneChartsWithPandas.png?raw=true)
         
         ```python
         import streamlit as st
