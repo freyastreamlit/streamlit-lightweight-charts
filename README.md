@@ -8,8 +8,9 @@ The Lightweight Charts library is the best choice to display financial data as a
 - [GitHub](https://github.com/tradingview/lightweight-charts)
 
 ### Versions
-Version 0.7.12 - Added "markers" to series
-Version 0.7.13 - Example of watermarks
+- Version 0.7.12 - Added "markers" to series
+- Version 0.7.13 - Example of watermarks
+- Version 0.7.14 - Example using Pandas
 
 ## How to use:
 ```
@@ -232,7 +233,31 @@ renderLightweightCharts([
 ```python
 import streamlit as st
 from streamlit_lightweight_charts import renderLightweightCharts
-import streamlit_lightweight_charts.dataSamples as data
+
+import json
+import numpy as np
+import yfinance as yf
+import pandas as pd
+import pandas_ta as ta
+
+# Request historic pricing data via finance.yahoo.com API
+df = yf.Ticker('AAPL').history(period='4mo')[['Open', 'High', 'Low', 'Close', 'Volume']]
+
+# Some data wrangling to match required format
+df = df.reset_index()
+df.columns = ['time','open','high','low','close','volume']                  # rename columns
+df['time'] = df['time'].dt.strftime('%Y-%m-%d')                             # Date to string
+df['color'] = np.where(  df['open'] > df['close'], '#ef5350', '#26a69a')    # bull or bear
+df.ta.macd(close='close', fast=6, slow=12, signal=5, append=True)          # calculate macd
+
+# extract to JSON format
+candles = json.loads(df.to_json(orient = "records"))
+volume = json.loads(df.rename(columns={"volume": "value",}).to_json(orient = "records"))
+macd_fast = json.loads(df.rename(columns={"MACDh_6_12_5": "value"}).to_json(orient = "records"))
+macd_slow = json.loads(df.rename(columns={"MACDs_6_12_5": "value"}).to_json(orient = "records"))
+df['color'] = np.where(  df['MACD_6_12_5'] > 0, '#26a69a', '#ef5350')  # MACD histogram color
+macd_hist = json.loads(df.rename(columns={"MACD_6_12_5": "value"}).to_json(orient = "records"))
+
 
 chartMultipaneOptions = [
     {
@@ -269,15 +294,12 @@ chartMultipaneOptions = [
             "horzAlign": 'center',
             "vertAlign": 'center',
             "color": 'rgba(171, 71, 188, 0.3)',
-            "text": 'Watermark Price',
+            "text": 'AAPL - D1',
         }
     },
     {
         "width": 600,
         "height": 100,
-        "crosshair": {
-            "mode": 0
-        },
         "layout": {
             "background": {
                 "type": 'solid',
@@ -295,6 +317,14 @@ chartMultipaneOptions = [
         },
         "timeScale": {
             "visible": False,
+        },
+        "watermark": {
+            "visible": True,
+            "fontSize": 18,
+            "horzAlign": 'left',
+            "vertAlign": 'top',
+            "color": 'rgba(171, 71, 188, 0.7)',
+            "text": 'Volume',
         }
     },
     {
@@ -309,14 +339,23 @@ chartMultipaneOptions = [
         },
         "timeScale": {
             "visible": False,
+        },
+        "watermark": {
+            "visible": True,
+            "fontSize": 18,
+            "horzAlign": 'left',
+            "vertAlign": 'center',
+            "color": 'rgba(171, 71, 188, 0.7)',
+            "text": 'MACD',
         }
     }
+
 ]
 
 seriesCandlestickChart = [
     {
         "type": 'Candlestick',
-        "data": data.priceCandlestickMultipane,
+        "data": candles,
         "options": {
             "upColor": '#26a69a',
             "downColor": '#ef5350',
@@ -327,26 +366,38 @@ seriesCandlestickChart = [
     }
 ]
 
-seriesAreaChart = [
+seriesMACDchart = [
     {
-        "type": 'Baseline',
-        "data": data.priceBaselineMultipane,
+        "type": 'Line',
+        "data": macd_fast,
         "options": {
-            "baseValue": { "type": "price", "price": 180 },
-            "topLineColor": 'rgba( 38, 166, 154, 1)',
-            "topFillColor1": 'rgba( 38, 166, 154, 0.28)',
-            "topFillColor2": 'rgba( 38, 166, 154, 0.05)',
-            "bottomLineColor": 'rgba( 239, 83, 80, 1)',
-            "bottomFillColor1": 'rgba( 239, 83, 80, 0.05)',
-            "bottomFillColor2": 'rgba( 239, 83, 80, 0.28)'
+            "color": 'blue',
+            "lineWidth": 2
+        }
+    },
+    {
+        "type": 'Line',
+        "data": macd_slow,
+        "options": {
+            "color": 'green',
+            "lineWidth": 2
+        }
+    },
+    {
+        "type": 'Histogram',
+        "data": macd_hist,
+        "options": {
+            "color": 'red',
+            "lineWidth": 1
         }
     }
 ]
 
-seriesHistogramChart = [
+
+seriesVolumeChart = [
     {
         "type": 'Histogram',
-        "data": data.priceVolumeMultipane,
+        "data": volume,
         "options": {
             "color": '#26a69a',
             "priceFormat": {
@@ -364,7 +415,8 @@ seriesHistogramChart = [
     }
 ]
 
-st.subheader("Multipane Chart with Watermark")
+st.subheader("Multipane Chart with Pandas")
+
 renderLightweightCharts([
     {
         "chart": chartMultipaneOptions[0],
@@ -372,14 +424,13 @@ renderLightweightCharts([
     },
     {
         "chart": chartMultipaneOptions[1],
-        "series": seriesHistogramChart
+        "series": seriesVolumeChart
     },
-            {
+    {
         "chart": chartMultipaneOptions[2],
-        "series": seriesAreaChart
+        "series": seriesMACDchart
     }
 ], 'multipane')
-
 ```
 ---
 <br />
