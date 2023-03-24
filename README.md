@@ -10,7 +10,7 @@ The Lightweight Charts library is the best choice to display financial data as a
 ### Versions
 - Version 0.7.12 - Added "markers" to series
 - Version 0.7.13 - Example of watermarks
-- Version 0.7.14 - Example using Pandas
+- Version 0.7.15 - Example using Pandas
 
 ## How to use:
 ```
@@ -226,9 +226,9 @@ renderLightweightCharts([
 ---
 <br />
 
-# Multipane chart
+# Multipane chart with Pandas
 
-![Multi Pane Chart with Watermark](https://github.com/freyastreamlit/streamlit-lightweight-charts/blob/main/examples/MultiPaneChart.png?raw=true)
+![Multi Pane Chart with Pandas](https://github.com/freyastreamlit/streamlit-lightweight-charts/blob/main/examples/MultiPaneChartWithPandas.png?raw=true)
 
 ```python
 import streamlit as st
@@ -349,7 +349,6 @@ chartMultipaneOptions = [
             "text": 'MACD',
         }
     }
-
 ]
 
 seriesCandlestickChart = [
@@ -362,6 +361,27 @@ seriesCandlestickChart = [
             "borderVisible": False,
             "wickUpColor": '#26a69a',
             "wickDownColor": '#ef5350'
+        }
+    }
+]
+
+seriesVolumeChart = [
+    {
+        "type": 'Histogram',
+        "data": volume,
+        "options": {
+            "color": '#26a69a',
+            "priceFormat": {
+                "type": 'volume',
+            },
+            "priceScaleId": "" # set as an overlay setting,
+        },
+        "priceScale": {
+            "scaleMargins": {
+                "top": 0,
+                "bottom": 0,
+            },
+            "alignLabels": False
         }
     }
 ]
@@ -389,28 +409,6 @@ seriesMACDchart = [
         "options": {
             "color": 'red',
             "lineWidth": 1
-        }
-    }
-]
-
-
-seriesVolumeChart = [
-    {
-        "type": 'Histogram',
-        "data": volume,
-        "options": {
-            "color": '#26a69a',
-            "priceFormat": {
-                "type": 'volume',
-            },
-            "priceScaleId": "" # set as an overlay setting,
-        },
-        "priceScale": {
-            "scaleMargins": {
-                "top": 0,
-                "bottom": 0,
-            },
-            "alignLabels": False
         }
     }
 ]

@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: streamlit-lightweight-charts
-Version: 0.7.14
+Version: 0.7.15
 Summary: Wrapper for TradingView lightweight-charts
 Home-page: https://github.com/freyastreamlit/streamlit-lightweight-charts
 Author: Joe Rosa
@@ -18,7 +18,7 @@ Description: # streamlit-lightweight-charts
         ### Versions
         - Version 0.7.12 - Added "markers" to series
         - Version 0.7.13 - Example of watermarks
-        - Version 0.7.14 - Example using Pandas
+        - Version 0.7.15 - Example using Pandas
         
         ## How to use:
         ```
@@ -234,9 +234,9 @@ Description: # streamlit-lightweight-charts
         ---
         <br />
         
-        # Multipane chart
+        # Multipane chart with Pandas
         
-        ![Multi Pane Chart with Watermark](https://github.com/freyastreamlit/streamlit-lightweight-charts/blob/main/examples/MultiPaneChart.png?raw=true)
+        ![Multi Pane Chart with Pandas](https://github.com/freyastreamlit/streamlit-lightweight-charts/blob/main/examples/MultiPaneChartWithPandas.png?raw=true)
         
         ```python
         import streamlit as st
@@ -357,7 +357,6 @@ Description: # streamlit-lightweight-charts
                     "text": 'MACD',
                 }
             }
-        
         ]
         
         seriesCandlestickChart = [
@@ -370,6 +369,27 @@ Description: # streamlit-lightweight-charts
                     "borderVisible": False,
                     "wickUpColor": '#26a69a',
                     "wickDownColor": '#ef5350'
+                }
+            }
+        ]
+        
+        seriesVolumeChart = [
+            {
+                "type": 'Histogram',
+                "data": volume,
+                "options": {
+                    "color": '#26a69a',
+                    "priceFormat": {
+                        "type": 'volume',
+                    },
+                    "priceScaleId": "" # set as an overlay setting,
+                },
+                "priceScale": {
+                    "scaleMargins": {
+                        "top": 0,
+                        "bottom": 0,
+                    },
+                    "alignLabels": False
                 }
             }
         ]
@@ -397,28 +417,6 @@ Description: # streamlit-lightweight-charts
                 "options": {
                     "color": 'red',
                     "lineWidth": 1
-                }
-            }
-        ]
-        
-        
-        seriesVolumeChart = [
-            {
-                "type": 'Histogram',
-                "data": volume,
-                "options": {
-                    "color": '#26a69a',
-                    "priceFormat": {
-                        "type": 'volume',
-                    },
-                    "priceScaleId": "" # set as an overlay setting,
-                },
-                "priceScale": {
-                    "scaleMargins": {
-                        "top": 0,
-                        "bottom": 0,
-                    },
-                    "alignLabels": False
                 }
             }
         ]
