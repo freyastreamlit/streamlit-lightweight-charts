@@ -1,0 +1,2 @@
+streamlit>=0.62
+streamlit-lightweight-charts>=0.7.15
