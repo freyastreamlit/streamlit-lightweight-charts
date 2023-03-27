@@ -226,8 +226,6 @@ renderLightweightCharts([
 ---
 <br />
 
-# Multipane chart with Pandas
-
 ![Multi Pane Chart with Pandas](https://github.com/freyastreamlit/streamlit-lightweight-charts/blob/main/examples/MultiPaneChartsWithPandas.png?raw=true)
 
 ```python
