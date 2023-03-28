@@ -7,6 +7,9 @@ import yfinance as yf
 import pandas as pd
 import pandas_ta as ta
 
+COLOR_BULL = 'rgba(38,166,154,0.9)' # #26a69a
+COLOR_BEAR = 'rgba(239,83,80,0.9)'  # #ef5350
+
 # Request historic pricing data via finance.yahoo.com API
 df = yf.Ticker('AAPL').history(period='4mo')[['Open', 'High', 'Low', 'Close', 'Volume']]
 
@@ -14,15 +17,15 @@ df = yf.Ticker('AAPL').history(period='4mo')[['Open', 'High', 'Low', 'Close', 'V
 df = df.reset_index()
 df.columns = ['time','open','high','low','close','volume']                  # rename columns
 df['time'] = df['time'].dt.strftime('%Y-%m-%d')                             # Date to string
-df['color'] = np.where(  df['open'] > df['close'], '#ef5350', '#26a69a')    # bull or bear
-df.ta.macd(close='close', fast=6, slow=12, signal=5, append=True)          # calculate macd
+df['color'] = np.where(  df['open'] > df['close'], COLOR_BEAR, COLOR_BULL)  # bull or bear
+df.ta.macd(close='close', fast=6, slow=12, signal=5, append=True)           # calculate macd
 
 # extract to JSON format
 candles = json.loads(df.to_json(orient = "records"))
 volume = json.loads(df.rename(columns={"volume": "value",}).to_json(orient = "records"))
 macd_fast = json.loads(df.rename(columns={"MACDh_6_12_5": "value"}).to_json(orient = "records"))
 macd_slow = json.loads(df.rename(columns={"MACDs_6_12_5": "value"}).to_json(orient = "records"))
-df['color'] = np.where(  df['MACD_6_12_5'] > 0, '#26a69a', '#ef5350')  # MACD histogram color
+df['color'] = np.where(  df['MACD_6_12_5'] > 0, COLOR_BULL, COLOR_BEAR)  # MACD histogram color
 macd_hist = json.loads(df.rename(columns={"MACD_6_12_5": "value"}).to_json(orient = "records"))
 
 
@@ -53,7 +56,8 @@ chartMultipaneOptions = [
         },
         "timeScale": {
             "borderColor": "rgba(197, 203, 206, 0.8)",
-            "barSpacing": 15
+            "barSpacing": 10,
+            "minBarSpacing": 8
         },
         "watermark": {
             "visible": True,
@@ -126,11 +130,11 @@ seriesCandlestickChart = [
         "type": 'Candlestick',
         "data": candles,
         "options": {
-            "upColor": '#26a69a',
-            "downColor": '#ef5350',
+            "upColor": COLOR_BULL,
+            "downColor": COLOR_BEAR,
             "borderVisible": False,
-            "wickUpColor": '#26a69a',
-            "wickDownColor": '#ef5350'
+            "wickUpColor": COLOR_BULL,
+            "wickDownColor": COLOR_BEAR
         }
     }
 ]
@@ -140,7 +144,6 @@ seriesVolumeChart = [
         "type": 'Histogram',
         "data": volume,
         "options": {
-            "color": '#26a69a',
             "priceFormat": {
                 "type": 'volume',
             },
