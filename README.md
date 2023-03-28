@@ -11,6 +11,7 @@ The Lightweight Charts library is the best choice to display financial data as a
 - Version 0.7.12 - Added "markers" to series
 - Version 0.7.13 - Example of watermarks
 - Version 0.7.15 - Example using Pandas
+- Version 0.7.16 - Work examples on [Streamlit Cloud](https://share.streamlit.io/)
 
 ## How to use:
 ```
@@ -44,7 +45,10 @@ renderLightweightCharts(charts: <List of Dicts> , key: <str>)
 
 # Overlaid Charts
 
-![Price with Volume Chart](https://github.com/freyastreamlit/streamlit-lightweight-charts/blob/main/examples/PriceVolumeChart.png?raw=true)
+[![Price with Volume Chart](https://github.com/freyastreamlit/streamlit-lightweight-charts/blob/main/examples/PriceVolumeChart.png?raw=true)](https://freyastreamlit-streamlit-lightw-examplespricevolumechart-j8ldyo.streamlit.app/)
+
+### [Click for a working sample on Streamlit Cloud ⬆](https://freyastreamlit-streamlit-lightw-examplespricevolumechart-j8ldyo.streamlit.app/)
+<br />
 
 ```python
 import streamlit as st
@@ -124,7 +128,10 @@ renderLightweightCharts([
 ---
 <br />
 
-![Overlaid Areas Chart](https://github.com/freyastreamlit/streamlit-lightweight-charts/blob/main/examples/OverlaidAreasChart.png?raw=true)
+[![Overlaid Areas Chart](https://github.com/freyastreamlit/streamlit-lightweight-charts/blob/main/examples/OverlaidAreasChart.png?raw=true)](https://freyastreamlit-streamlit-ligh-examplesoverlaidareaschart-3pg5tr.streamlit.app/)
+
+### [Click for a working sample on Streamlit Cloud ⬆](https://freyastreamlit-streamlit-ligh-examplesoverlaidareaschart-3pg5tr.streamlit.app/)
+<br />
 
 ```python
 import streamlit as st
