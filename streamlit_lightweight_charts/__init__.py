@@ -14,14 +14,16 @@ class Chart(str, Enum):
     Bar = 'addBarSeries'
     Candlestick = 'addCandlestickSeries'
 
+parent_dir = os.path.dirname(os.path.abspath(__file__))
+build_dir = os.path.join(parent_dir, "frontend","build")
+
 if not _RELEASE:
     _component_func = components.declare_component(
         _COMPONENT_NAME,
+        # path=build_dir,
         url="http://localhost:3001",
     )
 else:
-    parent_dir = os.path.dirname(os.path.abspath(__file__))
-    build_dir = os.path.join(parent_dir, "frontend","build")
     _component_func = components.declare_component(
         _COMPONENT_NAME,
         path=build_dir
