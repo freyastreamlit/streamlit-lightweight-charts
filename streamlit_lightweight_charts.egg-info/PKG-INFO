@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: streamlit-lightweight-charts
-Version: 0.7.16
+Version: 0.7.17
 Summary: Wrapper for TradingView lightweight-charts
 Home-page: https://github.com/freyastreamlit/streamlit-lightweight-charts
 Author: Joe Rosa
@@ -20,6 +20,12 @@ Description: # streamlit-lightweight-charts
         - Version 0.7.13 - Example of watermarks
         - Version 0.7.15 - Example using Pandas
         - Version 0.7.16 - Work examples on [Streamlit Cloud](https://share.streamlit.io/)
+        - Version 0.7.17 - Added integration example for Data Toggling
+        
+        ## How to install:
+        ```
+        python -m pip install streamlit-lightweight-charts
+        ```
         
         ## How to use:
         ```
@@ -239,6 +245,57 @@ Description: # streamlit-lightweight-charts
         ], 'overlaid')
         ```
         ---
+        
+        # Streamlit integration
+        
+        [![Data Toggling for an Area Chart](https://github.com/freyastreamlit/streamlit-lightweight-charts/blob/main/examples/DataToggling.png?raw=true)](https://freyastreamlit-streamlit-lightweigh-examplesdatatoggling-cbni35.streamlit.app/)
+        
+        ### [Click for a working sample on Streamlit Cloud ⬆](https://freyastreamlit-streamlit-lightweigh-examplesdatatoggling-cbni35.streamlit.app/)
+        <br />
+        
+        ```python
+        import streamlit as st
+        from streamlit_lightweight_charts import renderLightweightCharts
+        import streamlit_lightweight_charts.dataSamples as data
+        
+        chartOptions = {
+            "layout": {
+                "textColor": 'black',
+                "background": {
+                    "type": 'solid',
+                    "color": 'white'
+                }
+            }
+        }
+        
+        st.subheader("Data Toggling for an Area Chart")
+        
+        data_select = st.sidebar.radio('Select data source:', ('Area 01', 'Area 02'))
+        
+        if data_select == 'Area 01':
+            renderLightweightCharts( [
+                {
+                    "chart": chartOptions,
+                    "series": [{
+                        "type": 'Area',
+                        "data": data.seriesMultipleChartArea01,
+                        "options": {}
+                    }],
+                }
+            ], 'area')
+        else:
+            renderLightweightCharts( [
+                {
+                    "chart": chartOptions,
+                    "series": [{
+                        "type": 'Area',
+                        "data": data.seriesMultipleChartArea02,
+                        "options": {}
+                    }],
+                }
+            ], 'area')
+        ```
+        ---
         <br />
         
         ![Multi Pane Chart with Pandas](https://github.com/freyastreamlit/streamlit-lightweight-charts/blob/main/examples/MultiPaneChartsWithPandas.png?raw=true)
@@ -253,6 +310,9 @@ Description: # streamlit-lightweight-charts
         import pandas as pd
         import pandas_ta as ta
         
+        COLOR_BULL = 'rgba(38,166,154,0.9)' # #26a69a
+        COLOR_BEAR = 'rgba(239,83,80,0.9)'  # #ef5350
+        
         # Request historic pricing data via finance.yahoo.com API
         df = yf.Ticker('AAPL').history(period='4mo')[['Open', 'High', 'Low', 'Close', 'Volume']]
         
@@ -260,15 +320,15 @@ Description: # streamlit-lightweight-charts
         df = df.reset_index()
         df.columns = ['time','open','high','low','close','volume']                  # rename columns
         df['time'] = df['time'].dt.strftime('%Y-%m-%d')                             # Date to string
-        df['color'] = np.where(  df['open'] > df['close'], '#ef5350', '#26a69a')    # bull or bear
-        df.ta.macd(close='close', fast=6, slow=12, signal=5, append=True)          # calculate macd
+        df['color'] = np.where(  df['open'] > df['close'], COLOR_BEAR, COLOR_BULL)  # bull or bear
+        df.ta.macd(close='close', fast=6, slow=12, signal=5, append=True)           # calculate macd
         
-        # extract to JSON format
+        # export to JSON format
         candles = json.loads(df.to_json(orient = "records"))
         volume = json.loads(df.rename(columns={"volume": "value",}).to_json(orient = "records"))
         macd_fast = json.loads(df.rename(columns={"MACDh_6_12_5": "value"}).to_json(orient = "records"))
         macd_slow = json.loads(df.rename(columns={"MACDs_6_12_5": "value"}).to_json(orient = "records"))
-        df['color'] = np.where(  df['MACD_6_12_5'] > 0, '#26a69a', '#ef5350')  # MACD histogram color
+        df['color'] = np.where(  df['MACD_6_12_5'] > 0, COLOR_BULL, COLOR_BEAR)  # MACD histogram color
         macd_hist = json.loads(df.rename(columns={"MACD_6_12_5": "value"}).to_json(orient = "records"))
         
         
@@ -369,11 +429,11 @@ Description: # streamlit-lightweight-charts
                 "type": 'Candlestick',
                 "data": candles,
                 "options": {
-                    "upColor": '#26a69a',
-                    "downColor": '#ef5350',
+                    "upColor": COLOR_BULL,
+                    "downColor": COLOR_BEAR,
                     "borderVisible": False,
-                    "wickUpColor": '#26a69a',
-                    "wickDownColor": '#ef5350'
+                    "wickUpColor": COLOR_BULL,
+                    "wickDownColor": COLOR_BEAR
                 }
             }
         ]
@@ -383,7 +443,6 @@ Description: # streamlit-lightweight-charts
                 "type": 'Histogram',
                 "data": volume,
                 "options": {
-                    "color": '#26a69a',
                     "priceFormat": {
                         "type": 'volume',
                     },

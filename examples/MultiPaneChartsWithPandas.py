@@ -20,7 +20,7 @@ df['time'] = df['time'].dt.strftime('%Y-%m-%d')                             # Da
 df['color'] = np.where(  df['open'] > df['close'], COLOR_BEAR, COLOR_BULL)  # bull or bear
 df.ta.macd(close='close', fast=6, slow=12, signal=5, append=True)           # calculate macd
 
-# extract to JSON format
+# export to JSON format
 candles = json.loads(df.to_json(orient = "records"))
 volume = json.loads(df.rename(columns={"volume": "value",}).to_json(orient = "records"))
 macd_fast = json.loads(df.rename(columns={"MACDh_6_12_5": "value"}).to_json(orient = "records"))

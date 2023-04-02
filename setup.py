@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="streamlit-lightweight-charts",
-    version="0.7.16",
+    version="0.7.17",
     author="Joe Rosa",
     author_email="joe.rosa@itpmngt.co.uk",
     license="MIT",
@@ -18,7 +18,10 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/freyastreamlit/streamlit-lightweight-charts",
-    packages=setuptools.find_packages(),
+    packages=['streamlit_lightweight_charts'],
+    package_data={
+        'streamlit_lightweight_charts': ['frontend/build/*','frontend/build/static/js/*'],
+    },
     include_package_data=True,
     python_requires=">=3.6",
     install_requires=[
