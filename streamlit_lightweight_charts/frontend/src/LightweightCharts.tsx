@@ -61,6 +61,7 @@ const LightweightChartsMultiplePanes: React.VFC = () => {
 
           if(series.markers)
             chartSeries.setMarkers(series.markers)
+
         }
 
         chart.timeScale().fitContent();
@@ -79,9 +80,8 @@ const LightweightChartsMultiplePanes: React.VFC = () => {
               .forEach((c) => {
                 c.timeScale().applyOptions({
                   rightOffset: chart.timeScale().scrollPosition()
-                })
-              })
-          })
+          }) }) })
+
           chart.timeScale().subscribeVisibleLogicalRangeChange((range) => {
             if (range) {
               charts
@@ -90,7 +90,31 @@ const LightweightChartsMultiplePanes: React.VFC = () => {
                   c.timeScale().setVisibleLogicalRange({
                     from: range?.from,
                     to: range?.to
-      }) }) } }) }) }
+          }) }) } })
+
+          // chart.subscribeCrosshairMove((handler) => {
+          //   charts
+          //     .filter((c) => c !== chart)
+          //     .forEach((c) => {
+          //       // if (handler.time !== undefined) {
+          //       //   var xx = c.timeScale().timeToCoordinate(handler.time);
+          //       //   c.setCrossHairXY(xx,50,true);
+          //       // } else if (handler.point !== undefined){
+          //       //   c.setCrossHairXY(handler.point.x,10,false);
+          //       // }
+          //       // c.timeScale().applyOptions({
+          //       //   rightOffset: chart.timeScale().scrollPosition()
+          //       // })
+          //       console.log('handler',handler)
+          //       if (handler.time !== undefined) {
+          //         const xx = c.timeScale().timeToCoordinate(handler.time);
+          //         if(xx) c.timeScale().scrollToPosition(xx,true)
+          //         console.log('const xx',xx)
+          //       }
+          //     })
+          // })
+
+      }) }
 
       // const handleResize = () => {
       //   chart.applyOptions({ width: chartsContainerRef?.current?.clientWidth })
@@ -103,7 +127,8 @@ const LightweightChartsMultiplePanes: React.VFC = () => {
       }
 
     }, [ chartsData, chartElRefs, chartRefs])
-  
+
+
     return (
       <div ref={chartsContainerRef}>
         {chartElRefs.map((ref, i) => (
