@@ -50,8 +50,8 @@ __pypackages__/
 
 .pypirc
 
-build/
-## React and Javascript
+## Python build
+/build/
 
 .DS_STORE
 streamlit_lightweight_charts/frontend/node_modules

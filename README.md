@@ -13,6 +13,7 @@ The Lightweight Charts library is the best choice to display financial data as a
 - Version 0.7.15 - Example using Pandas
 - Version 0.7.16 - Work examples on [Streamlit Cloud](https://share.streamlit.io/)
 - Version 0.7.17 - Added integration example for Data Toggling
+- Version 0.7.18 - FIX: React build was not been commited
 
 ## How to install:
 ```
