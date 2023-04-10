@@ -4,7 +4,7 @@ from enum import Enum
 import streamlit.components.v1 as components
 
 _COMPONENT_NAME = "streamlit_lightweight_charts"
-_RELEASE = False
+_RELEASE = True
 
 class Chart(str, Enum):
     Area = 'addAreaSeries'
@@ -20,8 +20,8 @@ build_dir = os.path.join(parent_dir, "frontend","build")
 if not _RELEASE:
     _component_func = components.declare_component(
         _COMPONENT_NAME,
-        path=build_dir,
-        # url="http://localhost:3001",
+        # path=build_dir,
+        url="http://localhost:3001",
     )
 else:
     _component_func = components.declare_component(

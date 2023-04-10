@@ -6,6 +6,7 @@ The Lightweight Charts library is the best choice to display financial data as a
 - [Features Demo](https://www.tradingview.com/lightweight-charts/)
 - [Documentation](https://tradingview.github.io/lightweight-charts/)
 - [GitHub](https://github.com/tradingview/lightweight-charts)
+- [Pypi](https://pypi.org/project/streamlit-lightweight-charts/)
 
 ### Versions
 - Version 0.7.12 - Added "markers" to series
@@ -13,7 +14,7 @@ The Lightweight Charts library is the best choice to display financial data as a
 - Version 0.7.15 - Example using Pandas
 - Version 0.7.16 - Work examples on [Streamlit Cloud](https://share.streamlit.io/)
 - Version 0.7.17 - Added integration example for Data Toggling
-- Version 0.7.18 - FIX: React build was not been commited
+- Version 0.7.19 - FIX: React build was not been commited
 
 ## How to install:
 ```
