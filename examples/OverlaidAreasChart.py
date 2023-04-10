@@ -73,7 +73,6 @@ seriesOverlaidChart = [
             "lineWidth": 2,
         },
         "markers": [
-
             {
                 "time": '2019-05-03',
                 "position": 'aboveBar',

@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: streamlit-lightweight-charts
-Version: 0.7.17
+Version: 0.7.18
 Summary: Wrapper for TradingView lightweight-charts
 Home-page: https://github.com/freyastreamlit/streamlit-lightweight-charts
 Author: Joe Rosa
@@ -21,6 +21,7 @@ Description: # streamlit-lightweight-charts
         - Version 0.7.15 - Example using Pandas
         - Version 0.7.16 - Work examples on [Streamlit Cloud](https://share.streamlit.io/)
         - Version 0.7.17 - Added integration example for Data Toggling
+        - Version 0.7.18 - FIX: React build was not been commited
         
         ## How to install:
         ```

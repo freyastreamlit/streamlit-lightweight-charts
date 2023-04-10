@@ -10,12 +10,12 @@ streamlit_lightweight_charts.egg-info/requires.txt
 streamlit_lightweight_charts.egg-info/top_level.txt
 streamlit_lightweight_charts/frontend/build/asset-manifest.json
 streamlit_lightweight_charts/frontend/build/index.html
-streamlit_lightweight_charts/frontend/build/precache-manifest.e6bd8d0d7ff31e7ed0c54de396b38e6a.js
+streamlit_lightweight_charts/frontend/build/precache-manifest.e348f70e7319498a2e6b3a0c95da5ac1.js
 streamlit_lightweight_charts/frontend/build/service-worker.js
 streamlit_lightweight_charts/frontend/build/static/js/2.70acfc76.chunk.js
 streamlit_lightweight_charts/frontend/build/static/js/2.70acfc76.chunk.js.LICENSE.txt
 streamlit_lightweight_charts/frontend/build/static/js/2.70acfc76.chunk.js.map
-streamlit_lightweight_charts/frontend/build/static/js/main.57993593.chunk.js
-streamlit_lightweight_charts/frontend/build/static/js/main.57993593.chunk.js.map
+streamlit_lightweight_charts/frontend/build/static/js/main.509cd3c1.chunk.js
+streamlit_lightweight_charts/frontend/build/static/js/main.509cd3c1.chunk.js.map
 streamlit_lightweight_charts/frontend/build/static/js/runtime-main.e0d8c599.js
 streamlit_lightweight_charts/frontend/build/static/js/runtime-main.e0d8c599.js.map
