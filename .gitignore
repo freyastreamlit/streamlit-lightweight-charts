@@ -52,6 +52,7 @@ __pypackages__/
 
 ## Python build
 /build/
+/*.egg-info
 
 .DS_STORE
 streamlit_lightweight_charts/frontend/node_modules
