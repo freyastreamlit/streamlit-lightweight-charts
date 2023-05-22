@@ -8,7 +8,7 @@ import pandas as pd
 COLOR_BULL = 'rgba(38,166,154,0.9)' # #26a69a
 COLOR_BEAR = 'rgba(239,83,80,0.9)'  # #ef5350
 
-CSVFILE = 'MultiPaneChartsFromCSV.csv'
+CSVFILE = 'https://github.com/freyastreamlit/streamlit-lightweight-charts/blob/main/examples/MultiPaneChartsFromCSV.csv?raw=true'
 
 df = pd.read_csv(CSVFILE, skiprows=0, parse_dates=['datetime'], skip_blank_lines=True)
 
