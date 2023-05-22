@@ -9,12 +9,8 @@ The Lightweight Charts library is the best choice to display financial data as a
 - [Pypi](https://pypi.org/project/streamlit-lightweight-charts/)
 
 ### Versions
-- Version 0.7.12 - Added "markers" to series
-- Version 0.7.13 - Example of watermarks
-- Version 0.7.15 - Example using Pandas
-- Version 0.7.16 - Work examples on [Streamlit Cloud](https://share.streamlit.io/)
-- Version 0.7.17 - Added integration example for Data Toggling
 - Version 0.7.19 - FIX: React build was not been commited
+- Version 0.7.20 - Example loading from CSV
 
 ## How to install:
 ```
@@ -23,6 +19,8 @@ python -m pip install streamlit-lightweight-charts
 
 ## How to use:
 ```
+from streamlit_lightweight_charts import renderLightweightCharts
+
 renderLightweightCharts(charts: <List of Dicts> , key: <str>)
 ```
 
