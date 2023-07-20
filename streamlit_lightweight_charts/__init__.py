@@ -96,12 +96,14 @@ if not _RELEASE:
         "options": {}
     }]
     st.subheader("Area Chart")
-    renderLightweightCharts( [
+    click_events = renderLightweightCharts( [
         {
             "chart": chartOptions,
             "series": seriesAreaChart,
         }
     ], 'area')
+    st.write('click_event', click_events)
+
     st.markdown("---")
 
     # BASELINE chart
@@ -119,12 +121,13 @@ if not _RELEASE:
         }
     }]
     st.subheader("Baseline Chart")
-    renderLightweightCharts([
+    click_events = renderLightweightCharts([
         {
             "chart": chartOptions,
             "series": seriesBaselineChart
         }
     ], 'baseline')
+    st.write('click_event', click_events)
     st.markdown("---")
 
     # LINE charts
@@ -134,12 +137,13 @@ if not _RELEASE:
         "options": {}
     }]
     st.subheader("Line Chart")
-    renderLightweightCharts([
+    click_events = renderLightweightCharts([
         {
             "chart": chartOptions,
             "series": seriesLineChart
         }
     ], 'line')
+    st.write('click_event', click_events)
     st.markdown("---")
 
     # HISTOGRAM chart
@@ -149,12 +153,13 @@ if not _RELEASE:
         "options": { "color": '#26a69a' }
     }]
     st.subheader("Histogram Chart")
-    renderLightweightCharts([
+    click_events = renderLightweightCharts([
         {
             "chart": chartOptions,
             "series": seriesHistogramChart
         }
     ], 'histogram')
+    st.write('click_event', click_events)
     st.markdown("---")
 
     # BAR chart
@@ -167,12 +172,13 @@ if not _RELEASE:
         }
     }]
     st.subheader("Bar Chart")
-    renderLightweightCharts([
+    click_events = renderLightweightCharts([
         {
             "chart": chartOptions,
             "series": seriesBarChart
         }
     ], 'bar')
+    st.write('click_event', click_events)
     st.markdown("---")
 
     # CANDLESTICK chart
@@ -188,12 +194,13 @@ if not _RELEASE:
         }
     }]
     st.subheader("Candlestick Chart")
-    renderLightweightCharts([
+    click_events = renderLightweightCharts([
         {
             "chart": chartOptions,
             "series": seriesCandlestickChart
         }
     ], 'candlestick')
+    st.write('click_event', click_events)
     st.markdown("---")
 
     # OVERLAID AREA chart
@@ -232,6 +239,7 @@ if not _RELEASE:
 
     seriesOverlaidChart = [
         {
+            "title": "Volume 01",
             "type": 'Area',
             "data": data.seriesMultipleChartArea01,
             "options": {
@@ -260,6 +268,7 @@ if not _RELEASE:
             ]
         },
         {
+            "title": "Volume 02",
             "type": 'Area',
             "data": data.seriesMultipleChartArea02,
             "options": {
@@ -282,13 +291,13 @@ if not _RELEASE:
         }
     ]
     st.subheader("Overlaid Series with Markers")
-    renderLightweightCharts([
+    click_events = renderLightweightCharts([
         {
             "chart": overlaidAreaSeriesOptions,
             "series": seriesOverlaidChart
         }
     ], 'overlaid')
-
+    st.write('click_event', click_events)
     st.markdown("---")
 
     # PRICE AND VOLUME chart
@@ -327,6 +336,7 @@ if not _RELEASE:
 
     priceVolumeSeries = [
         {
+            "title": "Price",
             "type": 'Area',
             "data": data.priceVolumeSeriesArea,
             "options": {
@@ -337,6 +347,7 @@ if not _RELEASE:
             }
         },
         {
+            "title": "Volume",
             "type": 'Histogram',
             "data": data.priceVolumeSeriesHistogram,
             "options": {
@@ -355,12 +366,13 @@ if not _RELEASE:
         }
     ]
     st.subheader("Price and Volume Series Chart")
-    renderLightweightCharts([
+    click_events = renderLightweightCharts([
         {
             "chart": priceVolumeChartOptions,
             "series": priceVolumeSeries
         }
     ], 'priceAndVolume')
+    st.write('click_event', click_events)
     st.markdown("---")
 
     # MULTIPANE charts
@@ -448,6 +460,7 @@ if not _RELEASE:
     seriesCandlestickChart = [
         {
             "type": 'Candlestick',
+            "title": "Price",
             "data": data.priceCandlestickMultipane,
             "options": {
                 "upColor": '#26a69a',
@@ -462,6 +475,7 @@ if not _RELEASE:
     seriesAreaChart = [
         {
             "type": 'Baseline',
+            "title": 'MACD',
             "data": data.priceBaselineMultipane,
             "options": {
                 "baseValue": { "type": "price", "price": 180 },
@@ -478,6 +492,7 @@ if not _RELEASE:
     seriesHistogramChart = [
         {
             "type": 'Histogram',
+            "title": "Volume",
             "data": data.priceVolumeMultipane,
             "options": {
                 "color": '#26a69a',
@@ -497,7 +512,7 @@ if not _RELEASE:
     ]
 
     st.subheader("Multipane Chart with Watermark")
-    renderLightweightCharts([
+    click_events = renderLightweightCharts([
         {
             "chart": chartMultipaneOptions[0],
             "series": seriesCandlestickChart
@@ -511,4 +526,5 @@ if not _RELEASE:
             "series": seriesAreaChart
         }
     ], 'multipane')
+    st.write('click_event', click_events)
     st.markdown("---")

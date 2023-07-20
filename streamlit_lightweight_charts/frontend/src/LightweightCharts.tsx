@@ -1,9 +1,27 @@
+import { Streamlit } from "streamlit-component-lib"
 import { useRenderData } from "streamlit-component-lib-react-hooks"
 import {
+  ChartOptions,
   createChart,
   IChartApi,
+  MouseEventParams,
 } from "lightweight-charts"
+
 import React, { useRef, useEffect } from "react"
+
+interface ChartsDataItems {
+  chart: ChartOptions;
+  series: any;
+}
+
+enum Chart{
+    Area = 'addAreaSeries',
+    Baseline = 'addBaselineSeries',
+    Histogram = 'addHistogramSeries',
+    Line = 'addLineSeries',
+    Bar = 'addBarSeries',
+    Candlestick = 'addCandlestickSeries',
+}
 
 const LightweightChartsMultiplePanes: React.VFC = () => {
 
@@ -20,7 +38,7 @@ const LightweightChartsMultiplePanes: React.VFC = () => {
       if (chartElRefs.find((ref) => !ref.current)) return;
 
       chartElRefs.forEach((ref, i) => {
-        const chart = chartRefs.current[i] = createChart(
+        const chart: IChartApi = chartRefs.current[i] = createChart(
           ref.current as HTMLDivElement,{
             height: 300,
             width: chartElRefs[i].current.clientWidth,
@@ -29,30 +47,9 @@ const LightweightChartsMultiplePanes: React.VFC = () => {
         );
 
         for (const series of chartsData[i].series){
-          
-          let chartSeries
-          switch(series.type) {
-            case 'Area':
-              chartSeries = chart.addAreaSeries(series.options)
-              break
-            case 'Bar':
-              chartSeries = chart.addBarSeries(series.options )
-              break
-            case 'Baseline':
-              chartSeries = chart.addBaselineSeries(series.options)
-              break
-            case 'Candlestick':
-              chartSeries = chart.addCandlestickSeries(series.options)
-              break
-            case 'Histogram':
-              chartSeries = chart.addHistogramSeries(series.options)
-              break
-            case 'Line':
-              chartSeries = chart.addLineSeries(series.options)
-              break
-            default:
-                return
-          }
+
+          // @ts-ignore - dynamic access to IChartApi methods (e.g.: chart.addLineSeries() )
+          const chartSeries = chart[Chart[series.type]](series.options)
 
           if(series.priceScale)
             chart.priceScale(series.options.priceScaleId || '').applyOptions(series.priceScale)
@@ -63,6 +60,40 @@ const LightweightChartsMultiplePanes: React.VFC = () => {
             chartSeries.setMarkers(series.markers)
 
         }
+
+        // user clicked the 'mouse/pointer'
+        chart.subscribeClick((param: MouseEventParams) => {
+          if (!param.point || !param.time) { return }
+
+          const prices: any[] = []
+
+          chartsData.forEach((el: ChartsDataItems) => {
+            el.series.forEach((series: any, idx: number) => {
+              // @ts-ignore - get the whole series by idx and remove `time` and `color`
+              const { time, color, ...values } = [ ...param.seriesData.values() ][idx]
+              prices.push({
+                'title': series.title,
+                'type': series.type,
+                values
+              })
+            })
+          })
+
+          Streamlit.setComponentValue({
+            'time': param.time,
+            prices
+          })
+
+        })
+
+        // user moved the 'pointer'
+        // chart.subscribeCrosshairMove(param => {
+        //   console.log('CrossHair',param)
+        // })
+
+        // chart.timeScale().subscribeVisibleTimeRangeChange(param => {
+        //   console.log('TimeRangeChange',param)
+        // });
 
         chart.timeScale().fitContent();
 
