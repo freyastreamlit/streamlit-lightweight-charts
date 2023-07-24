@@ -36,11 +36,12 @@ seriesBaselineChart = [{
     }
 }]
 
-st.subheader("Baseline Chart sample")
+def render():
+    st.subheader("Baseline Chart sample")
 
-renderLightweightCharts([
-    {
-        "chart": chartOptions,
-        "series": seriesBaselineChart
-    }
-], 'baseline')
+    renderLightweightCharts([
+        {
+            "chart": chartOptions,
+            "series": seriesBaselineChart
+        }
+    ], 'baseline')

@@ -34,11 +34,12 @@ seriesCandlestickChart = [{
     }
 }]
 
-st.subheader("Candlestick Chart sample")
+def render():
+    st.subheader("Candlestick Chart sample")
 
-renderLightweightCharts([
-    {
-        "chart": chartOptions,
-        "series": seriesCandlestickChart
-    }
-], 'candlestick')
+    renderLightweightCharts([
+        {
+            "chart": chartOptions,
+            "series": seriesCandlestickChart
+        }
+    ], 'candlestick')

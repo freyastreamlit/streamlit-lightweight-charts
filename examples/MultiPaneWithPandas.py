@@ -186,19 +186,20 @@ seriesMACDchart = [
     }
 ]
 
-st.subheader("Multipane Chart with Pandas")
+def render():
+    st.subheader("Multipane Chart with Pandas")
 
-renderLightweightCharts([
-    {
-        "chart": chartMultipaneOptions[0],
-        "series": seriesCandlestickChart
-    },
-    {
-        "chart": chartMultipaneOptions[1],
-        "series": seriesVolumeChart
-    },
-    {
-        "chart": chartMultipaneOptions[2],
-        "series": seriesMACDchart
-    }
-], 'multipane')
+    renderLightweightCharts([
+        {
+            "chart": chartMultipaneOptions[0],
+            "series": seriesCandlestickChart
+        },
+        {
+            "chart": chartMultipaneOptions[1],
+            "series": seriesVolumeChart
+        },
+        {
+            "chart": chartMultipaneOptions[2],
+            "series": seriesMACDchart
+        }
+    ], 'multipane')

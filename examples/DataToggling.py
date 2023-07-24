@@ -12,29 +12,30 @@ chartOptions = {
     }
 }
 
-st.subheader("Data Toggling for an Area Chart")
+def render():
+    st.subheader("Data Toggling for an Area Chart")
 
-data_select = st.sidebar.radio('Select data source:', ('Area 01', 'Area 02'))
+    data_select = st.radio('Select data source:', ('Area 01', 'Area 02'))
 
-if data_select == 'Area 01':
-    renderLightweightCharts( [
-        {
-            "chart": chartOptions,
-            "series": [{
-                "type": 'Area',
-                "data": data.seriesMultipleChartArea01,
-                "options": {}
-            }],
-        }
-    ], 'area')
-else:
-    renderLightweightCharts( [
-        {
-            "chart": chartOptions,
-            "series": [{
-                "type": 'Area',
-                "data": data.seriesMultipleChartArea02,
-                "options": {}
-            }],
-        }
-    ], 'area')
+    if data_select == 'Area 01':
+        renderLightweightCharts( [
+            {
+                "chart": chartOptions,
+                "series": [{
+                    "type": 'Area',
+                    "data": data.seriesMultipleChartArea01,
+                    "options": {}
+                }],
+            }
+        ], 'area')
+    else:
+        renderLightweightCharts( [
+            {
+                "chart": chartOptions,
+                "series": [{
+                    "type": 'Area',
+                    "data": data.seriesMultipleChartArea02,
+                    "options": {}
+                }],
+            }
+        ], 'area')

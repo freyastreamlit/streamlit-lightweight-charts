@@ -31,11 +31,12 @@ seriesBarChart = [{
     }
 }]
 
-st.subheader("Bar Chart sample")
+def render():
+    st.subheader("Bar Chart sample")
 
-renderLightweightCharts([
-    {
-        "chart": chartOptions,
-        "series": seriesBarChart
-    }
-], 'bar')
+    renderLightweightCharts([
+        {
+            "chart": chartOptions,
+            "series": seriesBarChart
+        }
+    ], 'bar')

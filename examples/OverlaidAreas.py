@@ -84,11 +84,13 @@ seriesOverlaidChart = [
         ]
     }
 ]
-st.subheader("Overlaid Series with Markers")
 
-renderLightweightCharts([
-    {
-        "chart": overlaidAreaSeriesOptions,
-        "series": seriesOverlaidChart
-    }
-], 'overlaid')
+def render():
+    st.subheader("Overlaid Series with Markers")
+
+    renderLightweightCharts([
+        {
+            "chart": overlaidAreaSeriesOptions,
+            "series": seriesOverlaidChart
+        }
+    ], 'overlaid')

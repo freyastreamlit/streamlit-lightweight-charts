@@ -28,11 +28,12 @@ seriesLineChart = [{
     "options": {}
 }]
 
-st.subheader("Line Chart sample")
+def render():
+    st.subheader("Line Chart sample")
 
-renderLightweightCharts([
-    {
-        "chart": chartOptions,
-        "series": seriesLineChart
-    }
-], 'line')
+    renderLightweightCharts([
+        {
+            "chart": chartOptions,
+            "series": seriesLineChart
+        }
+    ], 'line')

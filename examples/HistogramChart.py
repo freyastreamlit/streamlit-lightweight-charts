@@ -28,11 +28,12 @@ seriesHistogramChart = [{
     "options": { "color": '#26a69a' }
 }]
 
-st.subheader("Histogram Chart sample")
+def render():
+    st.subheader("Histogram Chart sample")
 
-renderLightweightCharts([
-    {
-        "chart": chartOptions,
-        "series": seriesHistogramChart
-    }
-], 'histogram')
+    renderLightweightCharts([
+        {
+            "chart": chartOptions,
+            "series": seriesHistogramChart
+        }
+    ], 'histogram')

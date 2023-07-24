@@ -197,19 +197,20 @@ seriesMACDchart = [
     }
 ]
 
-st.subheader("Multipane Chart (intraday) from CSV")
+def render():
+    st.subheader("Multipane Chart (intraday) from CSV")
 
-renderLightweightCharts([
-    {
-        "chart": chartMultipaneOptions[0],
-        "series": seriesCandlestickChart
-    },
-    {
-        "chart": chartMultipaneOptions[1],
-        "series": seriesVolumeChart
-    },
-    {
-        "chart": chartMultipaneOptions[2],
-        "series": seriesMACDchart
-    }
-], 'multipane')
+    renderLightweightCharts([
+        {
+            "chart": chartMultipaneOptions[0],
+            "series": seriesCandlestickChart
+        },
+        {
+            "chart": chartMultipaneOptions[1],
+            "series": seriesVolumeChart
+        },
+        {
+            "chart": chartMultipaneOptions[2],
+            "series": seriesMACDchart
+        }
+    ], 'multipaneCSV')

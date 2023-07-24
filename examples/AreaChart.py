@@ -28,11 +28,15 @@ seriesAreaChart = [{
     "options": {}
 }]
 
-st.subheader("Area Chart sample")
+def render():
+    st.subheader("Area Chart sample")
+    st.write('(Click to interact)')
 
-renderLightweightCharts( [
-    {
-        "chart": chartOptions,
-        "series": seriesAreaChart,
-    }
-], 'area')
+    click_events = renderLightweightCharts( [
+        {
+            "chart": chartOptions,
+            "series": seriesAreaChart,
+        }
+    ], 'area')
+
+    st.write('Data from click_events', click_events)

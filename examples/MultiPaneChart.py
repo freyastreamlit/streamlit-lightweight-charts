@@ -133,19 +133,20 @@ seriesHistogramChart = [
     }
 ]
 
-st.subheader("Multipane Chart with Watermark")
+def render():
+    st.subheader("Multipane Chart with Watermark")
 
-renderLightweightCharts([
-    {
-        "chart": chartMultipaneOptions[0],
-        "series": seriesCandlestickChart
-    },
-    {
-        "chart": chartMultipaneOptions[1],
-        "series": seriesHistogramChart
-    },
-            {
-        "chart": chartMultipaneOptions[2],
-        "series": seriesAreaChart
-    }
-], 'multipane')
+    renderLightweightCharts([
+        {
+            "chart": chartMultipaneOptions[0],
+            "series": seriesCandlestickChart
+        },
+        {
+            "chart": chartMultipaneOptions[1],
+            "series": seriesHistogramChart
+        },
+                {
+            "chart": chartMultipaneOptions[2],
+            "series": seriesAreaChart
+        }
+    ], 'multipane')

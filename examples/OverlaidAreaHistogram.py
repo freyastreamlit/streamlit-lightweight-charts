@@ -63,12 +63,14 @@ priceVolumeSeries = [
         }
     }
 ]
-st.subheader("Price with Volume Series Chart sample")
 
-renderLightweightCharts([
-    {
-        "chart": priceVolumeChartOptions,
-        "series": priceVolumeSeries
-    }
-], 'priceAndVolume')
+def render():
+    st.subheader("Price with Volume Series Chart sample")
+
+    renderLightweightCharts([
+        {
+            "chart": priceVolumeChartOptions,
+            "series": priceVolumeSeries
+        }
+    ], 'priceAndVolume')
 
